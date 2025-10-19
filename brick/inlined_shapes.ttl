@@ -23,13 +23,13 @@ hpfs:temperature a rdfs:Class,
             sh:minCount 1 ;
             sh:path ref:hasExternalReference ],
         [ a sh:PropertyShape ;
-            sh:hasValue unit:Kelvin ;
-            sh:minCount 1 ;
-            sh:path qudt:hasUnit ],
-        [ a sh:PropertyShape ;
             sh:hasValue quantitykind:Temperature ;
             sh:minCount 1 ;
-            sh:path qudt:hasQuantityKind ] .
+            sh:path qudt:hasQuantityKind ],
+        [ a sh:PropertyShape ;
+            sh:hasValue unit:Kelvin ;
+            sh:minCount 1 ;
+            sh:path qudt:hasUnit ] .
 
 hpfs:temperature-setpoint a rdfs:Class,
         sh:NodeShape ;
@@ -50,6 +50,7 @@ hpfs:zone a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:HVAC_Zone ;
     sh:property [ a sh:PropertyShape ;
+            sh:minCount 3 ;
             sh:path brick:hasPoint ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;
@@ -62,12 +63,23 @@ hpfs:zone a rdfs:Class,
                     rdfs:label "zone_temperature-setpoint-1" ;
                     sh:class hpfs:temperature-setpoint ] ],
         [ a sh:PropertyShape ;
-            sh:minCount 3 ;
             sh:path brick:hasPoint ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;
                     rdfs:label "zone_temperature-1" ;
                     sh:class hpfs:temperature ] ] .
+
+hpfs:connectsAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#connects> ?target .
+                }
+                WHERE {
+	?target <https://brickschema.org/schema/Brick#feed> ?name . 
+	?name <https://brickschema.org/schema/Brick#feeds> ?target . 
+}""" ] ;
+    sh:targetSubjectsOf brick:feeds .
 
 hpfs:refAnnotation a sh:NodeShape ;
     sh:rule [ a sh:TripleRule ;

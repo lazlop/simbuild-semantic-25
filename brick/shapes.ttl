@@ -35,6 +35,10 @@ hpfs:zone a rdfs:Class,
         hpfs:zone_temperature-setpoint,
         hpfs:zone_temperature2 .
 
+hpfs:connectsAnnotation a sh:NodeShape ;
+    sh:rule hpfs:connectsAnnotationRule ;
+    sh:targetSubjectsOf brick:feeds .
+
 hpfs:refAnnotation a sh:NodeShape ;
     sh:rule hpfs:refAnnotationRule ;
     sh:targetClass ref:BOPTestReference .
@@ -50,6 +54,16 @@ hpfs:temperatureAnnotation a sh:NodeShape ;
 hpfs:zoneAnnotation a sh:NodeShape ;
     sh:rule hpfs:zoneAnnotationRule ;
     sh:targetClass brick:HVAC_Zone .
+
+hpfs:connectsAnnotationRule a sh:SPARQLRule ;
+    sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#connects> ?target .
+                }
+                WHERE {
+	?target <https://brickschema.org/schema/Brick#feed> ?name . 
+	?name <https://brickschema.org/schema/Brick#feeds> ?target . 
+}""" .
 
 hpfs:refAnnotationRule a sh:TripleRule ;
     sh:condition hpfs:ref ;
@@ -108,7 +122,6 @@ hpfs:zoneAnnotationRule a sh:TripleRule ;
     sh:subject sh:this .
 
 hpfs:zone_temperature a sh:PropertyShape ;
-    sh:minCount 3 ;
     sh:path brick:hasPoint ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape hpfs:zone_temperature-1 .
@@ -127,6 +140,7 @@ hpfs:zone_temperature-setpoint-1 a sh:NodeShape ;
     sh:class hpfs:temperature-setpoint .
 
 hpfs:zone_temperature2 a sh:PropertyShape ;
+    sh:minCount 3 ;
     sh:path brick:hasPoint ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape hpfs:zone_temperature2-1 .
