@@ -3,9 +3,5 @@ connects:
   body: >
     @prefix p: <urn:___param___#> .
     @prefix brick: <https://brickschema.org/schema/Brick#> .
-    @prefix qudt: <http://qudt.org/schema/qudt/> .
-    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
-    @prefix unit: <http://qudt.org/vocab/unit/> .
-    @prefix hpf: <urn:hpflex#> .
     p:name brick:feeds p:target .
     p:target brick:feed p:name .

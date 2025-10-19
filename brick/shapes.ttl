@@ -1,6 +1,5 @@
 @prefix brick: <https://brickschema.org/schema/Brick#> .
 @prefix hpfs: <urn:hpflex/shapes#> .
-@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -18,14 +17,12 @@ hpfs:temperature a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Temperature_Sensor ;
     sh:property hpfs:temperature_Kelvin,
-        hpfs:temperature_Temperature,
         hpfs:temperature_ref .
 
 hpfs:temperature-setpoint a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Temperature_Setpoint ;
     sh:property hpfs:temperature-setpoint_Kelvin,
-        hpfs:temperature-setpoint_Temperature,
         hpfs:temperature-setpoint_ref .
 
 hpfs:zone a rdfs:Class,
@@ -86,11 +83,6 @@ hpfs:temperature-setpoint_Kelvin a sh:PropertyShape ;
     sh:minCount 1 ;
     sh:path qudt:hasUnit .
 
-hpfs:temperature-setpoint_Temperature a sh:PropertyShape ;
-    sh:hasValue quantitykind:Temperature ;
-    sh:minCount 1 ;
-    sh:path qudt:hasQuantityKind .
-
 hpfs:temperature-setpoint_ref a sh:PropertyShape ;
     sh:minCount 1 ;
     sh:path ref:hasExternalReference .
@@ -105,11 +97,6 @@ hpfs:temperature_Kelvin a sh:PropertyShape ;
     sh:hasValue unit:Kelvin ;
     sh:minCount 1 ;
     sh:path qudt:hasUnit .
-
-hpfs:temperature_Temperature a sh:PropertyShape ;
-    sh:hasValue quantitykind:Temperature ;
-    sh:minCount 1 ;
-    sh:path qudt:hasQuantityKind .
 
 hpfs:temperature_ref a sh:PropertyShape ;
     sh:minCount 1 ;
