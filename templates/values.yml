@@ -1,0 +1,39 @@
+temperature:
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix brick: <https://brickschema.org/schema/Brick#> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    p:name a brick:Zone_Air_Temperature_Sensor ;
+        qudt:hasUnit unit:Kelvin ;
+        qudt:hasQuantityKind quantitykind:Temperature;
+        ref:hasExternalReference p:ref .
+  dependencies:
+    - template: ref
+      args: {"name": "ref"}
+
+temperature-setpoint:
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix brick: <https://brickschema.org/schema/Brick#> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    p:name a brick:Zone_Air_Temperature_Setpoint ;
+        qudt:hasUnit unit:Kelvin ;
+        qudt:hasQuantityKind quantitykind:Temperature ;
+        ref:hasExternalReference p:ref .
+  dependencies:
+    - template: ref
+      args: {"name": "ref"}
+        
+ref:
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix brick: <https://brickschema.org/schema/Brick#> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    p:name a ref:BOPTestReference ;
+      ref:name p:name .
