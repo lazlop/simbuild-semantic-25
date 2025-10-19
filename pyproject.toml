@@ -26,7 +26,7 @@ dependencies = [
 
 
 [tool.uv.sources]
-semantic-mpc-interface = { git = "https://github.com/lazlop/SemanticModelBuilder.git", branch = "develop" }
+semantic-mpc-interface = { git = "https://github.com/lazlop/SemanticModelBuilder.git", branch = "simbuild" }
 
 [project.optional-dependencies]
 dev = [

@@ -5,6 +5,7 @@ temperature:
     @prefix qudt: <http://qudt.org/schema/qudt/> .
     @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
     @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
     p:name a brick:Zone_Air_Temperature_Sensor ;
         qudt:hasUnit unit:Kelvin ;
         qudt:hasQuantityKind quantitykind:Temperature;
@@ -20,6 +21,7 @@ temperature-setpoint:
     @prefix qudt: <http://qudt.org/schema/qudt/> .
     @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
     @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
     p:name a brick:Zone_Air_Temperature_Setpoint ;
         qudt:hasUnit unit:Kelvin ;
         qudt:hasQuantityKind quantitykind:Temperature ;
@@ -35,5 +37,6 @@ ref:
     @prefix qudt: <http://qudt.org/schema/qudt/> .
     @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
     @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
     p:name a ref:BOPTestReference ;
       ref:name p:name .
