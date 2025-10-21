@@ -3,11 +3,21 @@ zone:
     @prefix p: <urn:___param___#> .
     @prefix brick: <https://brickschema.org/schema/Brick#> .
     p:name a brick:HVAC_Zone ;
-        brick:hasPoint p:temperature, p:temperature2, p:temperature-setpoint .
+        brick:hasPoint p:temperature, p:temperature-setpoint-cooling,  p:temperature-setpoint-heating.
   dependencies:
     - template: temperature
       args: {"name": "temperature"}
-    - template: temperature
-      args: {"name": "temperature2"}
     - template: temperature-setpoint
-      args: {"name": "temperature-setpoint"}
+      args: {"name": "temperature-setpoint-cooling"}
+    - template: temperature-setpoint
+      args: {"name": "temperature-setpoint-heating"}
+
+building:
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix brick: <https://brickschema.org/schema/Brick#> .
+    p:name a brick:Building ;
+        brick:hasPart p:zone .
+  dependencies:
+    - template: zone
+      args: {"name": "zone"}
