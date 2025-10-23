@@ -32,7 +32,7 @@ hpfs:temperature-setpoint a rdfs:Class,
 
 hpfs:zone a rdfs:Class,
         sh:NodeShape ;
-    sh:class brick:HVAC_Zone ;
+    sh:class brick:Zone ;
     sh:property hpfs:zone_temperature,
         hpfs:zone_temperature-setpoint-cooling,
         hpfs:zone_temperature-setpoint-heating .
@@ -59,7 +59,7 @@ hpfs:temperatureAnnotation a sh:NodeShape ;
 
 hpfs:zoneAnnotation a sh:NodeShape ;
     sh:rule hpfs:zoneAnnotationRule ;
-    sh:targetClass brick:HVAC_Zone .
+    sh:targetClass brick:Zone .
 
 hpfs:buildingAnnotationRule a sh:TripleRule ;
     sh:condition hpfs:building ;

@@ -41,23 +41,22 @@ hpfs:temperature-setpoint a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Temperature_Setpoint ;
     sh:property [ a sh:PropertyShape ;
+            sh:minCount 1 ;
+            sh:path ref:hasExternalReference ],
+        [ a sh:PropertyShape ;
             sh:hasValue unit:Kelvin ;
             sh:minCount 1 ;
-            sh:path qudt:hasUnit ],
-        [ a sh:PropertyShape ;
-            sh:minCount 1 ;
-            sh:path ref:hasExternalReference ] .
+            sh:path qudt:hasUnit ] .
 
 hpfs:zone a rdfs:Class,
         sh:NodeShape ;
-    sh:class brick:HVAC_Zone ;
+    sh:class brick:Zone ;
     sh:property [ a sh:PropertyShape ;
-            sh:minCount 3 ;
             sh:path brick:hasPoint ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;
-                    rdfs:label "zone_temperature-setpoint-cooling-1" ;
-                    sh:class hpfs:temperature-setpoint ] ],
+                    rdfs:label "zone_temperature-1" ;
+                    sh:class hpfs:temperature ] ],
         [ a sh:PropertyShape ;
             sh:path brick:hasPoint ;
             sh:qualifiedMinCount 1 ;
@@ -65,11 +64,12 @@ hpfs:zone a rdfs:Class,
                     rdfs:label "zone_temperature-setpoint-heating-1" ;
                     sh:class hpfs:temperature-setpoint ] ],
         [ a sh:PropertyShape ;
+            sh:minCount 3 ;
             sh:path brick:hasPoint ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;
-                    rdfs:label "zone_temperature-1" ;
-                    sh:class hpfs:temperature ] ] .
+                    rdfs:label "zone_temperature-setpoint-cooling-1" ;
+                    sh:class hpfs:temperature-setpoint ] ] .
 
 hpfs:buildingAnnotation a sh:NodeShape ;
     sh:rule [ a sh:TripleRule ;
@@ -121,5 +121,5 @@ hpfs:zoneAnnotation a sh:NodeShape ;
             sh:object hpfs:zone ;
             sh:predicate rdf:type ;
             sh:subject sh:this ] ;
-    sh:targetClass brick:HVAC_Zone .
+    sh:targetClass brick:Zone .
 
