@@ -8,6 +8,17 @@
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+hpfs:building a rdfs:Class,
+        sh:NodeShape ;
+    sh:class brick:Building ;
+    sh:property [ a sh:PropertyShape ;
+            sh:minCount 1 ;
+            sh:path brick:hasPart ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "building_zone-1" ;
+                    sh:class hpfs:zone ] ] .
+
 hpfs:ref a rdfs:Class,
         sh:NodeShape ;
     sh:class ref:BOPTestReference ;
@@ -19,12 +30,12 @@ hpfs:temperature a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Temperature_Sensor ;
     sh:property [ a sh:PropertyShape ;
+            sh:minCount 1 ;
+            sh:path ref:hasExternalReference ],
+        [ a sh:PropertyShape ;
             sh:hasValue unit:Kelvin ;
             sh:minCount 1 ;
-            sh:path qudt:hasUnit ],
-        [ a sh:PropertyShape ;
-            sh:minCount 1 ;
-            sh:path ref:hasExternalReference ] .
+            sh:path qudt:hasUnit ] .
 
 hpfs:temperature-setpoint a rdfs:Class,
         sh:NodeShape ;
@@ -45,13 +56,13 @@ hpfs:zone a rdfs:Class,
             sh:path brick:hasPoint ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;
-                    rdfs:label "zone_temperature2-1" ;
-                    sh:class hpfs:temperature ] ],
+                    rdfs:label "zone_temperature-setpoint-cooling-1" ;
+                    sh:class hpfs:temperature-setpoint ] ],
         [ a sh:PropertyShape ;
             sh:path brick:hasPoint ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;
-                    rdfs:label "zone_temperature-setpoint-1" ;
+                    rdfs:label "zone_temperature-setpoint-heating-1" ;
                     sh:class hpfs:temperature-setpoint ] ],
         [ a sh:PropertyShape ;
             sh:path brick:hasPoint ;
@@ -59,6 +70,14 @@ hpfs:zone a rdfs:Class,
             sh:qualifiedValueShape [ a sh:NodeShape ;
                     rdfs:label "zone_temperature-1" ;
                     sh:class hpfs:temperature ] ] .
+
+hpfs:buildingAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:TripleRule ;
+            sh:condition hpfs:building ;
+            sh:object hpfs:building ;
+            sh:predicate rdf:type ;
+            sh:subject sh:this ] ;
+    sh:targetClass brick:Building .
 
 hpfs:connectsAnnotation a sh:NodeShape ;
     sh:rule [ a sh:SPARQLRule ;
