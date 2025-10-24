@@ -74,26 +74,6 @@ bldg:heaPum_reaTSup a brick:Hot_Water_Temperature_Sensor ;
     qudt:hasUnit qudt:K ;
     ref:hasExternalReference bldg:heaPum_reaTSup_Reference .
 
-bldg:hvac_oveZonSupEas_TZonHeaSet a brick:hvac_oveZonSupEas_Setpoint ;
-    qudt:hasQuantityKind quantitykind:Temperature ;
-    qudt:hasUnit qudt:K ;
-    ref:hasExternalReference bldg:hvac_oveZonSupEas_TZonHeaSet_Reference .
-
-bldg:hvac_oveZonSupNor_TZonHeaSet a brick:hvac_oveZonSupNor_Setpoint ;
-    qudt:hasQuantityKind quantitykind:Temperature ;
-    qudt:hasUnit qudt:K ;
-    ref:hasExternalReference bldg:hvac_oveZonSupNor_TZonHeaSet_Reference .
-
-bldg:hvac_oveZonSupSou_TZonHeaSet a brick:hvac_oveZonSupSou_Setpoint ;
-    qudt:hasQuantityKind quantitykind:Temperature ;
-    qudt:hasUnit qudt:K ;
-    ref:hasExternalReference bldg:hvac_oveZonSupSou_TZonHeaSet_Reference .
-
-bldg:hvac_oveZonSupWes_TZonHeaSet a brick:hvac_oveZonSupWes_Setpoint ;
-    qudt:hasQuantityKind quantitykind:Temperature ;
-    qudt:hasUnit qudt:K ;
-    ref:hasExternalReference bldg:hvac_oveZonSupWes_TZonHeaSet_Reference .
-
 bldg:hvac_reaZonCor_CO2Zon a brick:Zone_CO2 ;
     qudt:hasUnit qudt:PPM ;
     ref:hasExternalReference bldg:hvac_reaZonCor_CO2Zon_Reference .
@@ -603,6 +583,11 @@ bldg:hvac_oveZonSupEas_TZonCooSet_Reference a ref:BOPTestReference ;
     ref:unit "K" ;
     ref:zone "Eas" .
 
+bldg:hvac_oveZonSupEas_TZonHeaSet a brick:Zone_Air_Heating_Temperature_Setpoint ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:hasUnit qudt:K ;
+    ref:hasExternalReference bldg:hvac_oveZonSupEas_TZonHeaSet_Reference .
+
 bldg:hvac_oveZonSupEas_TZonHeaSet_Reference a ref:BOPTestReference ;
     ref:activate "hvac_oveZonSupEas_TZonHeaSet_activate" ;
     ref:description "description" ;
@@ -627,6 +612,11 @@ bldg:hvac_oveZonSupNor_TZonCooSet_Reference a ref:BOPTestReference ;
     ref:name "hvac_oveZonSupNor_TZonCooSet_u" ;
     ref:unit "K" ;
     ref:zone "Nor" .
+
+bldg:hvac_oveZonSupNor_TZonHeaSet a brick:Zone_Air_Heating_Temperature_Setpoint ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:hasUnit qudt:K ;
+    ref:hasExternalReference bldg:hvac_oveZonSupNor_TZonHeaSet_Reference .
 
 bldg:hvac_oveZonSupNor_TZonHeaSet_Reference a ref:BOPTestReference ;
     ref:activate "hvac_oveZonSupNor_TZonHeaSet_activate" ;
@@ -653,6 +643,11 @@ bldg:hvac_oveZonSupSou_TZonCooSet_Reference a ref:BOPTestReference ;
     ref:unit "K" ;
     ref:zone "Sou" .
 
+bldg:hvac_oveZonSupSou_TZonHeaSet a brick:Zone_Air_Heating_Temperature_Setpoint ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:hasUnit qudt:K ;
+    ref:hasExternalReference bldg:hvac_oveZonSupSou_TZonHeaSet_Reference .
+
 bldg:hvac_oveZonSupSou_TZonHeaSet_Reference a ref:BOPTestReference ;
     ref:activate "hvac_oveZonSupSou_TZonHeaSet_activate" ;
     ref:description "description" ;
@@ -677,6 +672,11 @@ bldg:hvac_oveZonSupWes_TZonCooSet_Reference a ref:BOPTestReference ;
     ref:name "hvac_oveZonSupWes_TZonCooSet_u" ;
     ref:unit "K" ;
     ref:zone "Wes" .
+
+bldg:hvac_oveZonSupWes_TZonHeaSet a brick:Zone_Air_Heating_Temperature_Setpoint ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:hasUnit qudt:K ;
+    ref:hasExternalReference bldg:hvac_oveZonSupWes_TZonHeaSet_Reference .
 
 bldg:hvac_oveZonSupWes_TZonHeaSet_Reference a ref:BOPTestReference ;
     ref:activate "hvac_oveZonSupWes_TZonHeaSet_activate" ;
@@ -1124,20 +1124,25 @@ bldg:flo_Cor a brick:Zone ;
 
 bldg:flo_Eas a brick:Zone ;
     brick:hasPoint bldg:hvac_oveZonSupEas_TZonCooSet,
+        bldg:hvac_oveZonSupEas_TZonHeaSet,
         bldg:hvac_reaZonEas_TZon ;
     ref:hasExternalReference bldg:flo_Eas .
 
 bldg:flo_Nor a brick:Zone ;
     brick:hasPoint bldg:hvac_oveZonSupNor_TZonCooSet,
+        bldg:hvac_oveZonSupNor_TZonHeaSet,
         bldg:hvac_reaZonNor_TZon ;
     ref:hasExternalReference bldg:flo_Nor .
 
 bldg:flo_Sou a brick:Zone ;
     brick:hasPoint bldg:hvac_oveZonSupSou_TZonCooSet,
+        bldg:hvac_oveZonSupSou_TZonHeaSet,
         bldg:hvac_reaZonSou_TZon ;
     ref:hasExternalReference bldg:flo_Sou .
 
 bldg:flo_Wes a brick:Zone ;
     brick:hasPoint bldg:hvac_oveZonSupWes_TZonCooSet,
+        bldg:hvac_oveZonSupWes_TZonHeaSet,
         bldg:hvac_reaZonWes_TZon ;
     ref:hasExternalReference bldg:flo_Wes .
+

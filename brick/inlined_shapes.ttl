@@ -5,37 +5,33 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-hpfs:coo-set a rdfs:Class,
+hpfs:cooset a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Cooling_Temperature_Setpoint ;
     sh:property [ a sh:PropertyShape ;
             sh:minCount 1 ;
             sh:path ref:hasExternalReference ],
         [ a sh:PropertyShape ;
-            sh:hasValue unit:K ;
+            sh:hasValue qudt:K ;
             sh:minCount 1 ;
             sh:path qudt:hasUnit ] .
 
-hpfs:hea-set a rdfs:Class,
+hpfs:heaset a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Heating_Temperature_Setpoint ;
     sh:property [ a sh:PropertyShape ;
+            sh:hasValue qudt:K ;
             sh:minCount 1 ;
-            sh:path ref:hasExternalReference ],
+            sh:path qudt:hasUnit ],
         [ a sh:PropertyShape ;
-            sh:hasValue unit:K ;
             sh:minCount 1 ;
-            sh:path qudt:hasUnit ] .
+            sh:path ref:hasExternalReference ] .
 
 hpfs:ref a rdfs:Class,
         sh:NodeShape ;
-    sh:class ref:BOPTestReference ;
-    sh:property [ a sh:PropertyShape ;
-            sh:minCount 1 ;
-            sh:path ref:name ] .
+    sh:class ref:BOPTestReference .
 
 hpfs:temp a rdfs:Class,
         sh:NodeShape ;
@@ -44,57 +40,56 @@ hpfs:temp a rdfs:Class,
             sh:minCount 1 ;
             sh:path ref:hasExternalReference ],
         [ a sh:PropertyShape ;
-            sh:hasValue unit:K ;
+            sh:hasValue qudt:K ;
             sh:minCount 1 ;
             sh:path qudt:hasUnit ] .
 
 hpfs:zone a rdfs:Class,
         sh:NodeShape ;
-    sh:class brick:HVAC_Zone ;
+    sh:class brick:Zone ;
     sh:property [ a sh:PropertyShape ;
-            sh:minCount 3 ;
-            sh:path brick:hasPoint ;
-            sh:qualifiedMinCount 1 ;
-            sh:qualifiedValueShape [ a sh:NodeShape ;
-                    rdfs:label "zone_coo-set-1" ;
-                    sh:class hpfs:coo-set ] ],
-        [ a sh:PropertyShape ;
-            sh:path brick:hasPoint ;
-            sh:qualifiedMinCount 1 ;
-            sh:qualifiedValueShape [ a sh:NodeShape ;
-                    rdfs:label "zone_hea-set-1" ;
-                    sh:class hpfs:hea-set ] ],
-        [ a sh:PropertyShape ;
             sh:path brick:hasPoint ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;
                     rdfs:label "zone_temp-1" ;
-                    sh:class hpfs:temp ] ] .
+                    sh:class hpfs:temp ] ],
+        [ a sh:PropertyShape ;
+            sh:path brick:hasPoint ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "zone_cooset-1" ;
+                    sh:class hpfs:cooset ] ],
+        [ a sh:PropertyShape ;
+            sh:minCount 3 ;
+            sh:path brick:hasPoint ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "zone_heaset-1" ;
+                    sh:class hpfs:heaset ] ] .
 
-hpfs:connectsAnnotation a sh:NodeShape ;
-    sh:rule [ a sh:SPARQLRule ;
-            sh:construct """
-                CONSTRUCT {
-                    ?name <urn:hpflex/shapes#connects> ?target .
-                }
-                WHERE {
-	?name <https://brickschema.org/schema/Brick#feeds> ?target . 
-	?target <https://brickschema.org/schema/Brick#feed> ?name . 
-}""" ] ;
-    sh:targetSubjectsOf brick:feeds .
-
-hpfs:coo-setAnnotation a sh:NodeShape ;
+hpfs:coosetAnnotation a sh:NodeShape ;
     sh:rule [ a sh:TripleRule ;
-            sh:condition hpfs:coo-set ;
-            sh:object hpfs:coo-set ;
+            sh:condition hpfs:cooset ;
+            sh:object hpfs:cooset ;
             sh:predicate rdf:type ;
             sh:subject sh:this ] ;
     sh:targetClass brick:Zone_Air_Cooling_Temperature_Setpoint .
 
-hpfs:hea-setAnnotation a sh:NodeShape ;
+hpfs:has-pointAnnotation a sh:NodeShape ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#has-point> ?target .
+                }
+                WHERE {
+	?name <https://brickschema.org/schema/Brick#hasPoint> ?target . 
+}""" ] ;
+    sh:targetSubjectsOf brick:hasPoint .
+
+hpfs:heasetAnnotation a sh:NodeShape ;
     sh:rule [ a sh:TripleRule ;
-            sh:condition hpfs:hea-set ;
-            sh:object hpfs:hea-set ;
+            sh:condition hpfs:heaset ;
+            sh:object hpfs:heaset ;
             sh:predicate rdf:type ;
             sh:subject sh:this ] ;
     sh:targetClass brick:Zone_Air_Heating_Temperature_Setpoint .
@@ -121,5 +116,5 @@ hpfs:zoneAnnotation a sh:NodeShape ;
             sh:object hpfs:zone ;
             sh:predicate rdf:type ;
             sh:subject sh:this ] ;
-    sh:targetClass brick:HVAC_Zone .
+    sh:targetClass brick:Zone .
 

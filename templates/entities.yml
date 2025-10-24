@@ -2,12 +2,12 @@ zone:
   body: >
     @prefix p: <urn:___param___#> .
     @prefix brick: <https://brickschema.org/schema/Brick#> .
-    p:name a brick:HVAC_Zone ;
-        brick:hasPoint p:temp, p:coo-set, p:hea-set .
+    p:name a brick:Zone ;
+        brick:hasPoint p:temp, p:cooset, p:heaset .
   dependencies:
     - template: temp
       args: {"name": "temp"}
-    - template: coo-set
-      args: {"name": "coo-set"}
-    - template: hea-set
-      args: {"name": "hea-set"}
+    - template: cooset
+      args: {"name": "cooset"}
+    - template: heaset
+      args: {"name": "heaset"}

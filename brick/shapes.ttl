@@ -5,25 +5,23 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-hpfs:coo-set a rdfs:Class,
+hpfs:cooset a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Cooling_Temperature_Setpoint ;
-    sh:property hpfs:coo-set_K,
-        hpfs:coo-set_ref .
+    sh:property hpfs:cooset_K,
+        hpfs:cooset_ref .
 
-hpfs:hea-set a rdfs:Class,
+hpfs:heaset a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Heating_Temperature_Setpoint ;
-    sh:property hpfs:hea-set_K,
-        hpfs:hea-set_ref .
+    sh:property hpfs:heaset_K,
+        hpfs:heaset_ref .
 
 hpfs:ref a rdfs:Class,
         sh:NodeShape ;
-    sh:class ref:BOPTestReference ;
-    sh:property hpfs:ref_name .
+    sh:class ref:BOPTestReference .
 
 hpfs:temp a rdfs:Class,
         sh:NodeShape ;
@@ -33,21 +31,21 @@ hpfs:temp a rdfs:Class,
 
 hpfs:zone a rdfs:Class,
         sh:NodeShape ;
-    sh:class brick:HVAC_Zone ;
-    sh:property hpfs:zone_coo-set,
-        hpfs:zone_hea-set,
+    sh:class brick:Zone ;
+    sh:property hpfs:zone_cooset,
+        hpfs:zone_heaset,
         hpfs:zone_temp .
 
-hpfs:connectsAnnotation a sh:NodeShape ;
-    sh:rule hpfs:connectsAnnotationRule ;
-    sh:targetSubjectsOf brick:feeds .
-
-hpfs:coo-setAnnotation a sh:NodeShape ;
-    sh:rule hpfs:coo-setAnnotationRule ;
+hpfs:coosetAnnotation a sh:NodeShape ;
+    sh:rule hpfs:coosetAnnotationRule ;
     sh:targetClass brick:Zone_Air_Cooling_Temperature_Setpoint .
 
-hpfs:hea-setAnnotation a sh:NodeShape ;
-    sh:rule hpfs:hea-setAnnotationRule ;
+hpfs:has-pointAnnotation a sh:NodeShape ;
+    sh:rule hpfs:has-pointAnnotationRule ;
+    sh:targetSubjectsOf brick:hasPoint .
+
+hpfs:heasetAnnotation a sh:NodeShape ;
+    sh:rule hpfs:heasetAnnotationRule ;
     sh:targetClass brick:Zone_Air_Heating_Temperature_Setpoint .
 
 hpfs:refAnnotation a sh:NodeShape ;
@@ -60,45 +58,44 @@ hpfs:tempAnnotation a sh:NodeShape ;
 
 hpfs:zoneAnnotation a sh:NodeShape ;
     sh:rule hpfs:zoneAnnotationRule ;
-    sh:targetClass brick:HVAC_Zone .
+    sh:targetClass brick:Zone .
 
-hpfs:connectsAnnotationRule a sh:SPARQLRule ;
-    sh:construct """
-                CONSTRUCT {
-                    ?name <urn:hpflex/shapes#connects> ?target .
-                }
-                WHERE {
-	?name <https://brickschema.org/schema/Brick#feeds> ?target . 
-	?target <https://brickschema.org/schema/Brick#feed> ?name . 
-}""" .
-
-hpfs:coo-setAnnotationRule a sh:TripleRule ;
-    sh:condition hpfs:coo-set ;
-    sh:object hpfs:coo-set ;
+hpfs:coosetAnnotationRule a sh:TripleRule ;
+    sh:condition hpfs:cooset ;
+    sh:object hpfs:cooset ;
     sh:predicate rdf:type ;
     sh:subject sh:this .
 
-hpfs:coo-set_K a sh:PropertyShape ;
-    sh:hasValue unit:K ;
+hpfs:cooset_K a sh:PropertyShape ;
+    sh:hasValue qudt:K ;
     sh:minCount 1 ;
     sh:path qudt:hasUnit .
 
-hpfs:coo-set_ref a sh:PropertyShape ;
+hpfs:cooset_ref a sh:PropertyShape ;
     sh:minCount 1 ;
     sh:path ref:hasExternalReference .
 
-hpfs:hea-setAnnotationRule a sh:TripleRule ;
-    sh:condition hpfs:hea-set ;
-    sh:object hpfs:hea-set ;
+hpfs:has-pointAnnotationRule a sh:SPARQLRule ;
+    sh:construct """
+                CONSTRUCT {
+                    ?name <urn:hpflex/shapes#has-point> ?target .
+                }
+                WHERE {
+	?name <https://brickschema.org/schema/Brick#hasPoint> ?target . 
+}""" .
+
+hpfs:heasetAnnotationRule a sh:TripleRule ;
+    sh:condition hpfs:heaset ;
+    sh:object hpfs:heaset ;
     sh:predicate rdf:type ;
     sh:subject sh:this .
 
-hpfs:hea-set_K a sh:PropertyShape ;
-    sh:hasValue unit:K ;
+hpfs:heaset_K a sh:PropertyShape ;
+    sh:hasValue qudt:K ;
     sh:minCount 1 ;
     sh:path qudt:hasUnit .
 
-hpfs:hea-set_ref a sh:PropertyShape ;
+hpfs:heaset_ref a sh:PropertyShape ;
     sh:minCount 1 ;
     sh:path ref:hasExternalReference .
 
@@ -108,10 +105,6 @@ hpfs:refAnnotationRule a sh:TripleRule ;
     sh:predicate rdf:type ;
     sh:subject sh:this .
 
-hpfs:ref_name a sh:PropertyShape ;
-    sh:minCount 1 ;
-    sh:path ref:name .
-
 hpfs:tempAnnotationRule a sh:TripleRule ;
     sh:condition hpfs:temp ;
     sh:object hpfs:temp ;
@@ -119,7 +112,7 @@ hpfs:tempAnnotationRule a sh:TripleRule ;
     sh:subject sh:this .
 
 hpfs:temp_K a sh:PropertyShape ;
-    sh:hasValue unit:K ;
+    sh:hasValue qudt:K ;
     sh:minCount 1 ;
     sh:path qudt:hasUnit .
 
@@ -133,24 +126,24 @@ hpfs:zoneAnnotationRule a sh:TripleRule ;
     sh:predicate rdf:type ;
     sh:subject sh:this .
 
-hpfs:zone_coo-set a sh:PropertyShape ;
+hpfs:zone_cooset a sh:PropertyShape ;
+    sh:path brick:hasPoint ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape hpfs:zone_cooset-1 .
+
+hpfs:zone_cooset-1 a sh:NodeShape ;
+    rdfs:label "zone_cooset-1" ;
+    sh:class hpfs:cooset .
+
+hpfs:zone_heaset a sh:PropertyShape ;
     sh:minCount 3 ;
     sh:path brick:hasPoint ;
     sh:qualifiedMinCount 1 ;
-    sh:qualifiedValueShape hpfs:zone_coo-set-1 .
+    sh:qualifiedValueShape hpfs:zone_heaset-1 .
 
-hpfs:zone_coo-set-1 a sh:NodeShape ;
-    rdfs:label "zone_coo-set-1" ;
-    sh:class hpfs:coo-set .
-
-hpfs:zone_hea-set a sh:PropertyShape ;
-    sh:path brick:hasPoint ;
-    sh:qualifiedMinCount 1 ;
-    sh:qualifiedValueShape hpfs:zone_hea-set-1 .
-
-hpfs:zone_hea-set-1 a sh:NodeShape ;
-    rdfs:label "zone_hea-set-1" ;
-    sh:class hpfs:hea-set .
+hpfs:zone_heaset-1 a sh:NodeShape ;
+    rdfs:label "zone_heaset-1" ;
+    sh:class hpfs:heaset .
 
 hpfs:zone_temp a sh:PropertyShape ;
     sh:path brick:hasPoint ;

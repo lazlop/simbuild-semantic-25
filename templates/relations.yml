@@ -1,7 +1,6 @@
 # Example if mapping a relationship 
-connects:
+has-point:
   body: >
     @prefix p: <urn:___param___#> .
     @prefix brick: <https://brickschema.org/schema/Brick#> .
-    p:name brick:feeds p:target .
-    p:target brick:feed p:name .
+    p:name brick:hasPoint p:target.

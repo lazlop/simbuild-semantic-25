@@ -1,3 +1,4 @@
+# TODO: BOPTest Graph uses wrong units
 temp:
   body: >
     @prefix p: <urn:___param___#> .
@@ -6,13 +7,13 @@ temp:
     @prefix unit: <http://qudt.org/vocab/unit/> .
     @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
     p:name a brick:Zone_Air_Temperature_Sensor ;
-        qudt:hasUnit unit:K ;
+      qudt:hasUnit qudt:K ;
         ref:hasExternalReference p:ref .
   dependencies:
     - template: ref
       args: {"name": "ref"}
 
-coo-set:
+cooset:
   body: >
     @prefix p: <urn:___param___#> .
     @prefix brick: <https://brickschema.org/schema/Brick#> .
@@ -20,13 +21,13 @@ coo-set:
     @prefix unit: <http://qudt.org/vocab/unit/> .
     @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
     p:name a brick:Zone_Air_Cooling_Temperature_Setpoint;
-        qudt:hasUnit unit:K ;
-        ref:hasExternalReference p:ref .
+        ref:hasExternalReference p:ref ;
+        qudt:hasUnit qudt:K .
   dependencies:
     - template: ref
       args: {"name": "ref"}
   
-hea-set:
+heaset:
   body: >
     @prefix p: <urn:___param___#> .
     @prefix brick: <https://brickschema.org/schema/Brick#> .
@@ -34,8 +35,8 @@ hea-set:
     @prefix unit: <http://qudt.org/vocab/unit/> .
     @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
     p:name a brick:Zone_Air_Heating_Temperature_Setpoint;
-        qudt:hasUnit unit:K ;
-        ref:hasExternalReference p:ref .
+        ref:hasExternalReference p:ref ;
+        qudt:hasUnit qudt:K .
   dependencies:
     - template: ref
       args: {"name": "ref"}
@@ -44,5 +45,4 @@ ref:
   body: >
     @prefix p: <urn:___param___#> .
     @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
-    p:name a ref:BOPTestReference ;
-      ref:name p:name .
+    p:name a ref:BOPTestReference .
