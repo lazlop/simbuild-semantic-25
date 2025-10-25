@@ -46,3 +46,53 @@ ref:
     @prefix p: <urn:___param___#> .
     @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
     p:name a ref:BOPTestReference .
+
+
+# literally could just tab autocomplete this the whole way using the free windsurf vscode plugin...     
+heaset_u: 
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+
+    p:name a s223:FunctionInput ;
+      s223:uses p:heaset .
+  optional: [heaset]
+  dependencies:
+    - template: heaset
+      args: {"name": "heaset"}
+
+cooset_u: 
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+
+    p:name a s223:FunctionInput ;
+      s223:uses p:cooset .
+  optional: [cooset]
+  dependencies:
+    - template: cooset
+      args: {"name": "cooset"}
+
+temp_u: 
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+
+    p:name a s223:FunctionInput ;
+      s223:uses p:temp .
+  optional: [temp]
+  dependencies:
+    - template: temp
+      args: {"name": "temp"}
+
+temp_y: 
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+
+    p:name a s223:FunctionOutput ;
+      s223:uses p:temp .
+  optional: [temp]
+  dependencies:
+    - template: temp
+      args: {"name": "temp"}

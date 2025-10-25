@@ -4,6 +4,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -13,11 +14,21 @@ hpfs:cooset a rdfs:Class,
     sh:property hpfs:cooset_K,
         hpfs:cooset_ref .
 
+hpfs:cooset_u a rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:FunctionInput ;
+    sh:property hpfs:cooset_u_cooset .
+
 hpfs:heaset a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Heating_Temperature_Setpoint ;
     sh:property hpfs:heaset_K,
         hpfs:heaset_ref .
+
+hpfs:heaset_u a rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:FunctionInput ;
+    sh:property hpfs:heaset_u_heaset .
 
 hpfs:ref a rdfs:Class,
         sh:NodeShape ;
@@ -29,6 +40,16 @@ hpfs:temp a rdfs:Class,
     sh:property hpfs:temp_K,
         hpfs:temp_ref .
 
+hpfs:temp_u a rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:FunctionInput ;
+    sh:property hpfs:temp_u_temp .
+
+hpfs:temp_y a rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:FunctionOutput ;
+    sh:property hpfs:temp_y_temp .
+
 hpfs:zone a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone ;
@@ -36,9 +57,21 @@ hpfs:zone a rdfs:Class,
         hpfs:zone_heaset,
         hpfs:zone_temp .
 
+hpfs:zone-temp-controller a rdfs:Class,
+        sh:NodeShape ;
+    sh:class s223:Function ;
+    sh:property hpfs:zone-temp-controller_cooset_u,
+        hpfs:zone-temp-controller_heaset_u,
+        hpfs:zone-temp-controller_temp_u,
+        hpfs:zone-temp-controller_temp_y .
+
 hpfs:coosetAnnotation a sh:NodeShape ;
     sh:rule hpfs:coosetAnnotationRule ;
     sh:targetClass brick:Zone_Air_Cooling_Temperature_Setpoint .
+
+hpfs:cooset_uAnnotation a sh:NodeShape ;
+    sh:rule hpfs:cooset_uAnnotationRule ;
+    sh:targetClass s223:FunctionInput .
 
 hpfs:has-pointAnnotation a sh:NodeShape ;
     sh:rule hpfs:has-pointAnnotationRule ;
@@ -48,6 +81,10 @@ hpfs:heasetAnnotation a sh:NodeShape ;
     sh:rule hpfs:heasetAnnotationRule ;
     sh:targetClass brick:Zone_Air_Heating_Temperature_Setpoint .
 
+hpfs:heaset_uAnnotation a sh:NodeShape ;
+    sh:rule hpfs:heaset_uAnnotationRule ;
+    sh:targetClass s223:FunctionInput .
+
 hpfs:refAnnotation a sh:NodeShape ;
     sh:rule hpfs:refAnnotationRule ;
     sh:targetClass ref:BOPTestReference .
@@ -55,6 +92,18 @@ hpfs:refAnnotation a sh:NodeShape ;
 hpfs:tempAnnotation a sh:NodeShape ;
     sh:rule hpfs:tempAnnotationRule ;
     sh:targetClass brick:Zone_Air_Temperature_Sensor .
+
+hpfs:temp_uAnnotation a sh:NodeShape ;
+    sh:rule hpfs:temp_uAnnotationRule ;
+    sh:targetClass s223:FunctionInput .
+
+hpfs:temp_yAnnotation a sh:NodeShape ;
+    sh:rule hpfs:temp_yAnnotationRule ;
+    sh:targetClass s223:FunctionOutput .
+
+hpfs:zone-temp-controllerAnnotation a sh:NodeShape ;
+    sh:rule hpfs:zone-temp-controllerAnnotationRule ;
+    sh:targetClass s223:Function .
 
 hpfs:zoneAnnotation a sh:NodeShape ;
     sh:rule hpfs:zoneAnnotationRule ;
@@ -74,6 +123,16 @@ hpfs:cooset_K a sh:PropertyShape ;
 hpfs:cooset_ref a sh:PropertyShape ;
     sh:minCount 1 ;
     sh:path ref:hasExternalReference .
+
+hpfs:cooset_uAnnotationRule a sh:TripleRule ;
+    sh:condition hpfs:cooset_u ;
+    sh:object hpfs:cooset_u ;
+    sh:predicate rdf:type ;
+    sh:subject sh:this .
+
+hpfs:cooset_u_cooset a sh:PropertyShape ;
+    sh:minCount 1 ;
+    sh:path s223:uses .
 
 hpfs:has-pointAnnotationRule a sh:SPARQLRule ;
     sh:construct """
@@ -99,6 +158,16 @@ hpfs:heaset_ref a sh:PropertyShape ;
     sh:minCount 1 ;
     sh:path ref:hasExternalReference .
 
+hpfs:heaset_uAnnotationRule a sh:TripleRule ;
+    sh:condition hpfs:heaset_u ;
+    sh:object hpfs:heaset_u ;
+    sh:predicate rdf:type ;
+    sh:subject sh:this .
+
+hpfs:heaset_u_heaset a sh:PropertyShape ;
+    sh:minCount 1 ;
+    sh:path s223:uses .
+
 hpfs:refAnnotationRule a sh:TripleRule ;
     sh:condition hpfs:ref ;
     sh:object hpfs:ref ;
@@ -120,6 +189,70 @@ hpfs:temp_ref a sh:PropertyShape ;
     sh:minCount 1 ;
     sh:path ref:hasExternalReference .
 
+hpfs:temp_uAnnotationRule a sh:TripleRule ;
+    sh:condition hpfs:temp_u ;
+    sh:object hpfs:temp_u ;
+    sh:predicate rdf:type ;
+    sh:subject sh:this .
+
+hpfs:temp_u_temp a sh:PropertyShape ;
+    sh:minCount 1 ;
+    sh:path s223:uses .
+
+hpfs:temp_yAnnotationRule a sh:TripleRule ;
+    sh:condition hpfs:temp_y ;
+    sh:object hpfs:temp_y ;
+    sh:predicate rdf:type ;
+    sh:subject sh:this .
+
+hpfs:temp_y_temp a sh:PropertyShape ;
+    sh:minCount 1 ;
+    sh:path s223:uses .
+
+hpfs:zone-temp-controllerAnnotationRule a sh:TripleRule ;
+    sh:condition hpfs:zone-temp-controller ;
+    sh:object hpfs:zone-temp-controller ;
+    sh:predicate rdf:type ;
+    sh:subject sh:this .
+
+hpfs:zone-temp-controller_cooset_u a sh:PropertyShape ;
+    sh:path s223:hasInput ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape hpfs:zone-temp-controller_cooset_u-1 .
+
+hpfs:zone-temp-controller_cooset_u-1 a sh:NodeShape ;
+    rdfs:label "zone-temp-controller_cooset_u-1" ;
+    sh:class hpfs:cooset_u .
+
+hpfs:zone-temp-controller_heaset_u a sh:PropertyShape ;
+    sh:minCount 3 ;
+    sh:path s223:hasInput ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape hpfs:zone-temp-controller_heaset_u-1 .
+
+hpfs:zone-temp-controller_heaset_u-1 a sh:NodeShape ;
+    rdfs:label "zone-temp-controller_heaset_u-1" ;
+    sh:class hpfs:heaset_u .
+
+hpfs:zone-temp-controller_temp_u a sh:PropertyShape ;
+    sh:path s223:hasInput ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape hpfs:zone-temp-controller_temp_u-1 .
+
+hpfs:zone-temp-controller_temp_u-1 a sh:NodeShape ;
+    rdfs:label "zone-temp-controller_temp_u-1" ;
+    sh:class hpfs:temp_u .
+
+hpfs:zone-temp-controller_temp_y a sh:PropertyShape ;
+    sh:minCount 1 ;
+    sh:path s223:hasOutput ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape hpfs:zone-temp-controller_temp_y-1 .
+
+hpfs:zone-temp-controller_temp_y-1 a sh:NodeShape ;
+    rdfs:label "zone-temp-controller_temp_y-1" ;
+    sh:class hpfs:temp_y .
+
 hpfs:zoneAnnotationRule a sh:TripleRule ;
     sh:condition hpfs:zone ;
     sh:object hpfs:zone ;
@@ -127,6 +260,7 @@ hpfs:zoneAnnotationRule a sh:TripleRule ;
     sh:subject sh:this .
 
 hpfs:zone_cooset a sh:PropertyShape ;
+    sh:minCount 3 ;
     sh:path brick:hasPoint ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape hpfs:zone_cooset-1 .
@@ -136,7 +270,6 @@ hpfs:zone_cooset-1 a sh:NodeShape ;
     sh:class hpfs:cooset .
 
 hpfs:zone_heaset a sh:PropertyShape ;
-    sh:minCount 3 ;
     sh:path brick:hasPoint ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape hpfs:zone_heaset-1 .

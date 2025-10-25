@@ -11,3 +11,22 @@ zone:
       args: {"name": "cooset"}
     - template: heaset
       args: {"name": "heaset"}
+
+zone-temp-controller:
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
+
+    p:name a s223:Function ;
+        s223:hasInput p:heaset_u, p:cooset_u, p:temp_u ;
+        s223:hasOutput p:temp_y ;
+        .
+  dependencies:
+    - template: heaset_u
+      args: {"name": "heaset_u"}
+    - template: cooset_u
+      args: {"name": "cooset_u"}
+    - template: temp_u
+      args: {"name": "temp_u"}
+    - template: temp_y
+      args: {"name": "temp_y"}
