@@ -32,14 +32,14 @@ hpfs:heaset a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Heating_Temperature_Setpoint ;
     sh:property [ a sh:PropertyShape ;
-            sh:minCount 2 ;
-            sh:path ref:hasExternalReference ],
-        [ a sh:PropertyShape ;
-            sh:path ref:hasExternalReference ],
-        [ a sh:PropertyShape ;
             sh:hasValue qudt:K ;
             sh:minCount 1 ;
-            sh:path qudt:hasUnit ] .
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            sh:path ref:hasExternalReference ],
+        [ a sh:PropertyShape ;
+            sh:minCount 2 ;
+            sh:path ref:hasExternalReference ] .
 
 hpfs:heaset_u a rdfs:Class,
         sh:NodeShape ;
@@ -60,13 +60,13 @@ hpfs:temp a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Temperature_Sensor ;
     sh:property [ a sh:PropertyShape ;
+            sh:path ref:hasExternalReference ],
+        [ a sh:PropertyShape ;
             sh:hasValue qudt:K ;
             sh:minCount 1 ;
             sh:path qudt:hasUnit ],
         [ a sh:PropertyShape ;
             sh:minCount 2 ;
-            sh:path ref:hasExternalReference ],
-        [ a sh:PropertyShape ;
             sh:path ref:hasExternalReference ] .
 
 hpfs:temp_u a rdfs:Class,
@@ -87,6 +87,7 @@ hpfs:zone a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone ;
     sh:property [ a sh:PropertyShape ;
+            sh:minCount 3 ;
             sh:path brick:hasPoint ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;
@@ -99,7 +100,6 @@ hpfs:zone a rdfs:Class,
                     rdfs:label "zone_temp-1" ;
                     sh:class hpfs:temp ] ],
         [ a sh:PropertyShape ;
-            sh:minCount 3 ;
             sh:path brick:hasPoint ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;
@@ -110,7 +110,13 @@ hpfs:zone-temp-controller a rdfs:Class,
         sh:NodeShape ;
     sh:class s223:Function ;
     sh:property [ a sh:PropertyShape ;
-            sh:minCount 3 ;
+            sh:minCount 1 ;
+            sh:path s223:hasOutput ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ a sh:NodeShape ;
+                    rdfs:label "zone-temp-controller_temp_y-1" ;
+                    sh:class hpfs:temp_y ] ],
+        [ a sh:PropertyShape ;
             sh:path s223:hasInput ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;
@@ -123,13 +129,7 @@ hpfs:zone-temp-controller a rdfs:Class,
                     rdfs:label "zone-temp-controller_heaset_u-1" ;
                     sh:class hpfs:heaset_u ] ],
         [ a sh:PropertyShape ;
-            sh:minCount 1 ;
-            sh:path s223:hasOutput ;
-            sh:qualifiedMinCount 1 ;
-            sh:qualifiedValueShape [ a sh:NodeShape ;
-                    rdfs:label "zone-temp-controller_temp_y-1" ;
-                    sh:class hpfs:temp_y ] ],
-        [ a sh:PropertyShape ;
+            sh:minCount 3 ;
             sh:path s223:hasInput ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ a sh:NodeShape ;

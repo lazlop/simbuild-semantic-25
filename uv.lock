@@ -2420,7 +2420,7 @@ wheels = [
 [[package]]
 name = "semantic-mpc-interface"
 version = "0.1.0"
-source = { git = "https://github.com/lazlop/SemanticModelBuilder.git?branch=simbuild#0987df7c27f1dba3068ac39d7d657647495ee0a7" }
+source = { git = "https://github.com/lazlop/SemanticModelBuilder.git?branch=simbuild#5ec4a5201de64a6e5ec742fa091c2304f0123a88" }
 dependencies = [
     { name = "brick-tq-shacl" },
     { name = "buildingmotif" },

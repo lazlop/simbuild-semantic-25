@@ -1,0 +1,69 @@
+{
+  "query": {
+    "and": [
+      {
+        "or": [
+          {
+            "field": {
+              "property": "equipRef",
+              "text": "Cor"
+            }
+          },
+          {
+            "field": {
+              "property": "equipRef",
+              "text": "Eas"
+            }
+          },
+          {
+            "field": {
+              "property": "equipRef",
+              "text": "Nor"
+            }
+          },
+          {
+            "field": {
+              "property": "equipRef",
+              "text": "Sou"
+            }
+          },
+          {
+            "field": {
+              "property": "equipRef",
+              "text": "Wes"
+            }
+          }
+        ]
+      },
+      {
+        "or": [
+          {
+            "field": {
+              "property": "class",
+              "text": "TZon"
+            }
+          },
+          {
+            "field": {
+              "property": "class",
+              "text": "TZonCooSet"
+            }
+          },
+          {
+            "field": {
+              "property": "class",
+              "text": "TZonHeaSet"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "label_attribute": "class",
+  "groups": {
+    "keys": [
+      "equipRef"
+    ]
+  },
+  "query_mode": "POINT_QUERY_MODE_ADVANCED"
+}
