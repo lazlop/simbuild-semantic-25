@@ -8,7 +8,7 @@ temp:
     @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
     p:name a brick:Zone_Air_Temperature_Sensor ;
       qudt:hasUnit qudt:K ;
-        ref:hasExternalReference p:normal-ref .
+        ref:hasExternalReference p:ref, p:normal-ref .
   dependencies:
     - template: ref
       args: {"name": "ref"}
@@ -21,7 +21,7 @@ cooset:
     @prefix unit: <http://qudt.org/vocab/unit/> .
     @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
     p:name a brick:Zone_Air_Cooling_Temperature_Setpoint;
-        ref:hasExternalReference p:normal-ref ;
+        ref:hasExternalReference p:ref, p:normal-ref ;
         qudt:hasUnit qudt:K .
   dependencies:
     - template: ref
@@ -35,7 +35,7 @@ heaset:
     @prefix unit: <http://qudt.org/vocab/unit/> .
     @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
     p:name a brick:Zone_Air_Heating_Temperature_Setpoint;
-        ref:hasExternalReference p:normal-ref ;
+        ref:hasExternalReference p:ref, p:normal-ref ;
         qudt:hasUnit qudt:K .
   dependencies:
     - template: ref

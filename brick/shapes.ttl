@@ -12,7 +12,8 @@ hpfs:cooset a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Cooling_Temperature_Setpoint ;
     sh:property hpfs:cooset_K,
-        hpfs:cooset_normal-ref .
+        hpfs:cooset_normal-ref,
+        hpfs:cooset_ref .
 
 hpfs:cooset_u a rdfs:Class,
         sh:NodeShape ;
@@ -23,7 +24,8 @@ hpfs:heaset a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Heating_Temperature_Setpoint ;
     sh:property hpfs:heaset_K,
-        hpfs:heaset_normal-ref .
+        hpfs:heaset_normal-ref,
+        hpfs:heaset_ref .
 
 hpfs:heaset_u a rdfs:Class,
         sh:NodeShape ;
@@ -42,7 +44,8 @@ hpfs:temp a rdfs:Class,
         sh:NodeShape ;
     sh:class brick:Zone_Air_Temperature_Sensor ;
     sh:property hpfs:temp_K,
-        hpfs:temp_normal-ref .
+        hpfs:temp_normal-ref,
+        hpfs:temp_ref .
 
 hpfs:temp_u a rdfs:Class,
         sh:NodeShape ;
@@ -129,7 +132,10 @@ hpfs:cooset_K a sh:PropertyShape ;
     sh:path qudt:hasUnit .
 
 hpfs:cooset_normal-ref a sh:PropertyShape ;
-    sh:minCount 1 ;
+    sh:minCount 2 ;
+    sh:path ref:hasExternalReference .
+
+hpfs:cooset_ref a sh:PropertyShape ;
     sh:path ref:hasExternalReference .
 
 hpfs:cooset_uAnnotationRule a sh:TripleRule ;
@@ -163,7 +169,10 @@ hpfs:heaset_K a sh:PropertyShape ;
     sh:path qudt:hasUnit .
 
 hpfs:heaset_normal-ref a sh:PropertyShape ;
-    sh:minCount 1 ;
+    sh:minCount 2 ;
+    sh:path ref:hasExternalReference .
+
+hpfs:heaset_ref a sh:PropertyShape ;
     sh:path ref:hasExternalReference .
 
 hpfs:heaset_uAnnotationRule a sh:TripleRule ;
@@ -200,7 +209,10 @@ hpfs:temp_K a sh:PropertyShape ;
     sh:path qudt:hasUnit .
 
 hpfs:temp_normal-ref a sh:PropertyShape ;
-    sh:minCount 1 ;
+    sh:minCount 2 ;
+    sh:path ref:hasExternalReference .
+
+hpfs:temp_ref a sh:PropertyShape ;
     sh:path ref:hasExternalReference .
 
 hpfs:temp_uAnnotationRule a sh:TripleRule ;
@@ -230,7 +242,6 @@ hpfs:zone-temp-controllerAnnotationRule a sh:TripleRule ;
     sh:subject sh:this .
 
 hpfs:zone-temp-controller_cooset_u a sh:PropertyShape ;
-    sh:minCount 3 ;
     sh:path s223:hasInput ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape hpfs:zone-temp-controller_cooset_u-1 .
@@ -249,6 +260,7 @@ hpfs:zone-temp-controller_heaset_u-1 a sh:NodeShape ;
     sh:class hpfs:heaset_u .
 
 hpfs:zone-temp-controller_temp_u a sh:PropertyShape ;
+    sh:minCount 3 ;
     sh:path s223:hasInput ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape hpfs:zone-temp-controller_temp_u-1 .
@@ -274,7 +286,6 @@ hpfs:zoneAnnotationRule a sh:TripleRule ;
     sh:subject sh:this .
 
 hpfs:zone_cooset a sh:PropertyShape ;
-    sh:minCount 3 ;
     sh:path brick:hasPoint ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape hpfs:zone_cooset-1 .
@@ -284,6 +295,7 @@ hpfs:zone_cooset-1 a sh:NodeShape ;
     sh:class hpfs:cooset .
 
 hpfs:zone_heaset a sh:PropertyShape ;
+    sh:minCount 3 ;
     sh:path brick:hasPoint ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape hpfs:zone_heaset-1 .
