@@ -1236,9 +1236,7 @@ bldg:chi_reaTSup a brick:Chilled_Water_Temperature_Sensor ;
     ref:hasExternalReference bldg:chi_reaTSup_Reference,
         bldg:chi_reaTSup_normal .
 
-bldg:flo_Cor a brick:Zone,
-        ns1:zone ;
-    brick:hasPoint bldg:hvac_oveZonSupCor_TZonCooSet,
+bldg:flo_Cor brick:hasPoint bldg:hvac_oveZonSupCor_TZonCooSet,
         bldg:hvac_oveZonSupCor_TZonHeaSet,
         bldg:hvac_reaZonCor_TZon ;
     ref:hasExternalReference bldg:flo_Cor ;

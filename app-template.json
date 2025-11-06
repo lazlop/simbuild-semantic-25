@@ -1,0 +1,106 @@
+{
+  "name":  "OBC-DF-test",
+  "minNfVersion":  "task_flow_api:0cbc4767",
+  "flowNodes":  [
+    {
+      "id":  "40976c5a-6ed5-4f36-bd78-79c0bc47d4c8",
+      "name":  "command",
+      "x":  1944.4214741736105,
+      "y":  587.9966984370694
+    },
+    {
+      "id":  "fb88c4dc-1f87-44a9-9dd7-647583cc5ead",
+      "name":  "query",
+      "x":  1133.6168483972783,
+      "y":  465.8536195310369
+    },
+    {
+      "id":  "78243fcd-8e8b-4c3a-b421-7c788582f59a",
+      "name":  "zone_ratcheting",
+      "x":  1539.3150269270513,
+      "y":  515.3505322115232,
+      "hook":  {
+        "entryPoint":  "/hooks/normal-ratcheting-df-registry/registry/cdl_models.Controls/zone_ratcheting.js",
+        "mode":  "MODE_ON_DATA",
+        "inputs":  [
+          {
+            "name":  "TZon",
+            "type":  "HOOK_INPUT_TYPE_GROUPED"
+          },
+          {
+            "name":  "TZonCooSetCur",
+            "type":  "HOOK_INPUT_TYPE_GROUPED"
+          },
+          {
+            "name":  "TZonHeaSetCur",
+            "type":  "HOOK_INPUT_TYPE_GROUPED"
+          },
+          {
+            "name":  "occSta",
+            "type":  "HOOK_INPUT_TYPE_GROUPED"
+          }
+        ],
+        "outputs":  [
+          {
+            "label":  "TZonCooSetCom",
+            "type":  "VARIABLE_TYPE_GROUPED"
+          },
+          {
+            "label":  "TZonHeaSetCom",
+            "type":  "VARIABLE_TYPE_GROUPED"
+          }
+        ]
+      }
+    },
+    {
+      "id":  "24b24428-8a3a-452e-bcdf-1f247b5d878d",
+      "name":  "occupancy",
+      "x":  1349.6747476459616,
+      "y":  218.06964233644183,
+      "hook":  {
+        "entryPoint":  "/hooks/occupancy.js",
+        "inputs":  [
+          {
+            "name":  "TCooSet",
+            "type":  "HOOK_INPUT_TYPE_GROUPED"
+          },
+          {
+            "name":  "THeaSet",
+            "type":  "HOOK_INPUT_TYPE_GROUPED"
+          }
+        ],
+        "outputs":  [
+          {
+            "label":  "uOcc",
+            "type":  "VARIABLE_TYPE_GROUPED"
+          }
+        ]
+      }
+    },
+    {
+      "id":  "29cb6df0-bbdf-4af0-a10a-86c2653a0946",
+      "name":  "CalculateSetbacks",
+      "x":  1653.0420839392962,
+      "y":  273.99348891608315,
+      "schedule":  {
+        "schedule":  {
+          "rrule":  "DTSTART:20251105T080000Z\nRRULE:FREQ=SECONDLY;INTERVAL=60"
+        }
+      }
+    }
+  ],
+  "flowEdges":  [
+    {
+      "from":  "24b24428-8a3a-452e-bcdf-1f247b5d878d",
+      "to":  "78243fcd-8e8b-4c3a-b421-7c788582f59a",
+      "fromName":  "flow-source-handle-uOcc",
+      "toName":  "flow-target-handle-occSta"
+    },
+    {
+      "from":  "29cb6df0-bbdf-4af0-a10a-86c2653a0946",
+      "to":  "78243fcd-8e8b-4c3a-b421-7c788582f59a",
+      "fromName":  "schedule-source-handle",
+      "toName":  "schedule-target-handle"
+    }
+  ]
+}
