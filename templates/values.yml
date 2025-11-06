@@ -13,6 +13,19 @@ temp:
     - template: ref
       args: {"name": "ref"}
 
+occ:
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix brick: <https://brickschema.org/schema/Brick#> .
+    @prefix qudt: <http://qudt.org/schema/qudt/> .
+    @prefix unit: <http://qudt.org/vocab/unit/> .
+    @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+    p:name a brick:Occupancy_Sensor ;
+        ref:hasExternalReference p:ref, p:normal-ref .
+  dependencies:
+    - template: ref
+      args: {"name": "ref"}
+
 cooset:
   body: >
     @prefix p: <urn:___param___#> .

@@ -36,6 +36,12 @@ hpfs:normal-ref a rdfs:Class,
         sh:NodeShape ;
     sh:class ref:NormalReference .
 
+hpfs:occ a rdfs:Class,
+        sh:NodeShape ;
+    sh:class brick:Occupancy_Sensor ;
+    sh:property hpfs:occ_normal-ref,
+        hpfs:occ_ref .
+
 hpfs:ref a rdfs:Class,
         sh:NodeShape ;
     sh:class ref:BOPTestReference .
@@ -62,6 +68,7 @@ hpfs:zone a rdfs:Class,
     sh:class brick:Zone ;
     sh:property hpfs:zone_cooset,
         hpfs:zone_heaset,
+        hpfs:zone_occ,
         hpfs:zone_temp .
 
 hpfs:zone-temp-controller a rdfs:Class,
@@ -71,6 +78,13 @@ hpfs:zone-temp-controller a rdfs:Class,
         hpfs:zone-temp-controller_heaset_u,
         hpfs:zone-temp-controller_temp_u,
         hpfs:zone-temp-controller_temp_y .
+
+hpfs:zone2 a rdfs:Class,
+        sh:NodeShape ;
+    sh:class brick:Zone ;
+    sh:property hpfs:zone2_cooset,
+        hpfs:zone2_heaset,
+        hpfs:zone2_temp .
 
 hpfs:coosetAnnotation a sh:NodeShape ;
     sh:rule hpfs:coosetAnnotationRule ;
@@ -96,6 +110,10 @@ hpfs:normal-refAnnotation a sh:NodeShape ;
     sh:rule hpfs:normal-refAnnotationRule ;
     sh:targetClass ref:NormalReference .
 
+hpfs:occAnnotation a sh:NodeShape ;
+    sh:rule hpfs:occAnnotationRule ;
+    sh:targetClass brick:Occupancy_Sensor .
+
 hpfs:refAnnotation a sh:NodeShape ;
     sh:rule hpfs:refAnnotationRule ;
     sh:targetClass ref:BOPTestReference .
@@ -115,6 +133,10 @@ hpfs:temp_yAnnotation a sh:NodeShape ;
 hpfs:zone-temp-controllerAnnotation a sh:NodeShape ;
     sh:rule hpfs:zone-temp-controllerAnnotationRule ;
     sh:targetClass s223:Function .
+
+hpfs:zone2Annotation a sh:NodeShape ;
+    sh:rule hpfs:zone2AnnotationRule ;
+    sh:targetClass brick:Zone .
 
 hpfs:zoneAnnotation a sh:NodeShape ;
     sh:rule hpfs:zoneAnnotationRule ;
@@ -190,6 +212,19 @@ hpfs:normal-refAnnotationRule a sh:TripleRule ;
     sh:object hpfs:normal-ref ;
     sh:predicate rdf:type ;
     sh:subject sh:this .
+
+hpfs:occAnnotationRule a sh:TripleRule ;
+    sh:condition hpfs:occ ;
+    sh:object hpfs:occ ;
+    sh:predicate rdf:type ;
+    sh:subject sh:this .
+
+hpfs:occ_normal-ref a sh:PropertyShape ;
+    sh:minCount 2 ;
+    sh:path ref:hasExternalReference .
+
+hpfs:occ_ref a sh:PropertyShape ;
+    sh:path ref:hasExternalReference .
 
 hpfs:refAnnotationRule a sh:TripleRule ;
     sh:condition hpfs:ref ;
@@ -279,6 +314,40 @@ hpfs:zone-temp-controller_temp_y-1 a sh:NodeShape ;
     rdfs:label "zone-temp-controller_temp_y-1" ;
     sh:class hpfs:temp_y .
 
+hpfs:zone2AnnotationRule a sh:TripleRule ;
+    sh:condition hpfs:zone2 ;
+    sh:object hpfs:zone2 ;
+    sh:predicate rdf:type ;
+    sh:subject sh:this .
+
+hpfs:zone2_cooset a sh:PropertyShape ;
+    sh:path brick:hasPoint ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape hpfs:zone2_cooset-1 .
+
+hpfs:zone2_cooset-1 a sh:NodeShape ;
+    rdfs:label "zone2_cooset-1" ;
+    sh:class hpfs:cooset .
+
+hpfs:zone2_heaset a sh:PropertyShape ;
+    sh:minCount 3 ;
+    sh:path brick:hasPoint ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape hpfs:zone2_heaset-1 .
+
+hpfs:zone2_heaset-1 a sh:NodeShape ;
+    rdfs:label "zone2_heaset-1" ;
+    sh:class hpfs:heaset .
+
+hpfs:zone2_temp a sh:PropertyShape ;
+    sh:path brick:hasPoint ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape hpfs:zone2_temp-1 .
+
+hpfs:zone2_temp-1 a sh:NodeShape ;
+    rdfs:label "zone2_temp-1" ;
+    sh:class hpfs:temp .
+
 hpfs:zoneAnnotationRule a sh:TripleRule ;
     sh:condition hpfs:zone ;
     sh:object hpfs:zone ;
@@ -295,6 +364,7 @@ hpfs:zone_cooset-1 a sh:NodeShape ;
     sh:class hpfs:cooset .
 
 hpfs:zone_heaset a sh:PropertyShape ;
+    sh:minCount 4 ;
     sh:path brick:hasPoint ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape hpfs:zone_heaset-1 .
@@ -303,8 +373,16 @@ hpfs:zone_heaset-1 a sh:NodeShape ;
     rdfs:label "zone_heaset-1" ;
     sh:class hpfs:heaset .
 
+hpfs:zone_occ a sh:PropertyShape ;
+    sh:path brick:hasPoint ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape hpfs:zone_occ-1 .
+
+hpfs:zone_occ-1 a sh:NodeShape ;
+    rdfs:label "zone_occ-1" ;
+    sh:class hpfs:occ .
+
 hpfs:zone_temp a sh:PropertyShape ;
-    sh:minCount 3 ;
     sh:path brick:hasPoint ;
     sh:qualifiedMinCount 1 ;
     sh:qualifiedValueShape hpfs:zone_temp-1 .

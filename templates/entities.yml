@@ -3,6 +3,23 @@ zone:
     @prefix p: <urn:___param___#> .
     @prefix brick: <https://brickschema.org/schema/Brick#> .
     p:name a brick:Zone ;
+        brick:hasPoint p:temp, p:cooset, p:heaset, p:occ .
+  dependencies:
+    - template: temp
+      args: {"name": "temp"}
+    - template: cooset
+      args: {"name": "cooset"}
+    - template: heaset
+      args: {"name": "heaset"}
+    - template: occ
+      args: {"name": "occ"}
+
+
+zone2:
+  body: >
+    @prefix p: <urn:___param___#> .
+    @prefix brick: <https://brickschema.org/schema/Brick#> .
+    p:name a brick:Zone ;
         brick:hasPoint p:temp, p:cooset, p:heaset .
   dependencies:
     - template: temp

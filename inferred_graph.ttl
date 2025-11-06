@@ -1245,7 +1245,7 @@ bldg:flo_Cor brick:hasPoint bldg:hvac_oveZonSupCor_TZonCooSet,
         bldg:hvac_reaZonCor_TZon .
 
 bldg:flo_Eas a brick:Zone,
-        ns1:zone ;
+        ns1:zone2 ;
     brick:hasPoint bldg:hvac_oveZonSupEas_TZonCooSet,
         bldg:hvac_oveZonSupEas_TZonHeaSet,
         bldg:hvac_reaZonEas_TZon ;
@@ -1255,7 +1255,7 @@ bldg:flo_Eas a brick:Zone,
         bldg:hvac_reaZonEas_TZon .
 
 bldg:flo_Nor a brick:Zone,
-        ns1:zone ;
+        ns1:zone2 ;
     brick:hasPoint bldg:hvac_oveZonSupNor_TZonCooSet,
         bldg:hvac_oveZonSupNor_TZonHeaSet,
         bldg:hvac_reaZonNor_TZon ;
@@ -1265,7 +1265,7 @@ bldg:flo_Nor a brick:Zone,
         bldg:hvac_reaZonNor_TZon .
 
 bldg:flo_Sou a brick:Zone,
-        ns1:zone ;
+        ns1:zone2 ;
     brick:hasPoint bldg:hvac_oveZonSupSou_TZonCooSet,
         bldg:hvac_oveZonSupSou_TZonHeaSet,
         bldg:hvac_reaZonSou_TZon ;
@@ -1275,7 +1275,7 @@ bldg:flo_Sou a brick:Zone,
         bldg:hvac_reaZonSou_TZon .
 
 bldg:flo_Wes a brick:Zone,
-        ns1:zone ;
+        ns1:zone2 ;
     brick:hasPoint bldg:hvac_oveZonSupWes_TZonCooSet,
         bldg:hvac_oveZonSupWes_TZonHeaSet,
         bldg:hvac_reaZonWes_TZon ;
