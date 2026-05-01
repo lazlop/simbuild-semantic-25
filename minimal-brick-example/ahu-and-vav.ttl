@@ -1,0 +1,24 @@
+@prefix bldg: <https://BESTESTAir.urn#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+
+bldg:hvac_wes a brick:VAV ;
+    brick:feeds bldg:flo_Wes .
+
+bldg:flo_Wes a brick:Zone ;
+    brick:hasPoint bldg:hvac_oveZonSupWes_TZonCooSet,
+        bldg:hvac_oveZonSupWes_TZonHeaSet,
+        bldg:hvac_reaZonWes_TZon .
+
+bldg:hvac_oveZonSupWes_TZonCooSet a brick:Zone_Air_Cooling_Temperature_Setpoint ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:hasUnit qudt:K .
+
+bldg:hvac_oveZonSupWes_TZonHeaSet a brick:Zone_Air_Heating_Temperature_Setpoint ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:hasUnit qudt:K .
+
+bldg:hvac_reaZonWes_TZon a brick:Zone_Air_Temperature_Sensor ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:hasUnit qudt:K .

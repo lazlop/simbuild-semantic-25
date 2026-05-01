@@ -1,0 +1,27 @@
+@prefix bldg: <https://BESTESTAir.urn#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+
+bldg:zone_ratcheting a s223:Function ;
+    rdfs:label "Zone Ratcheting" ;
+    rdfs:comment "Represents a control sequence that gradually increases or decreases the heating and cooling setpoints of a zone to reduce energy consumption during a demand-flexibility event." ;
+    s223:hasInput bldg:heaset_u, bldg:cooset_u, bldg:temp_u ;
+    s223:hasOutput bldg:temp_y ;
+.
+
+bldg:heaset_u a s223:FunctionInput ;
+    s223:uses bldg:hvac_oveZonSupWes_TZonHeaSet ;
+.
+
+bldg:cooset_u a s223:FunctionInput ;
+    s223:uses bldg:hvac_oveZonSupWes_TZonCooSet ;
+.
+
+bldg:temp_u a s223:FunctionInput ;
+    s223:uses bldg:hvac_reaZonWes_TZon ;
+.
+
+bldg:temp_y a s223:FunctionOutput ;
+    s223:produces bldg:hvac_reaZonWes_TZon ;
+.
