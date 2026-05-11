@@ -1,0 +1,34 @@
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix obc: <urn:obc/shapes#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+obc:controls a rdf:Property ;
+    rdfs:comment "Defines which entities are controlled by a given control function." .
+
+obc:binds a rdf:Property ;
+    rdfs:comment "Defines the relationship between a specified control input and specified data point." .
+
+cdl:Controller a obc:zone-temp-controller ;
+    obc:controls obc:zone .
+
+cdl:Controller.TZonHeaSetCur a obc:heaset_u ;
+    obc:binds obc:heaset .
+
+cdl:Controller.TZonCooSetCur a obc:cooset_u ;
+    obc:binds obc:cooset .
+
+cdl:Controller.TZonTemp a obc:temp_u ;
+    obc:binds obc:temp.
+
+cdl:Controller.TZonHeaSetCom a obc:heaset_y ;
+    obc:binds obc:heaset .
+
+cdl:Controller.TZonCooSetCom a obc:cooset_y ;
+    obc:binds obc:cooset .
+

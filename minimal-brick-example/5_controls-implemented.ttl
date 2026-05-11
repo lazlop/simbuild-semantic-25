@@ -1,0 +1,32 @@
+@prefix bldg: <https://BESTESTAir.urn#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix cdl: <http://example.org#cdl_models.Controls.> .
+@prefix obc: <urn:obc/shapes#> .
+
+cdl:Controller a s223:Function ;
+    rdfs:label "Zone Ratcheting" ;
+    rdfs:comment "Represents an active control sequence that gradually increases or decreases the heating and cooling setpoints of the zone flo_Wes to reduce energy consumption during a demand-flexibility event" ;
+    s223:hasInput cdl:Controller.TZonHeaSetCur, cdl:Controller.TZonCooSetCur, cdl:Controller.TZonTemp ;
+    s223:hasOutput cdl:Controller.TZonHeaSetCom, cdl:Controller.TZonCooSetCom ;
+.
+
+cdl:Controller.TZonHeaSetCur a s223:FunctionInput ;
+    s223:uses bldg:hvac_oveZonSupWes_TZonHeaSet ;
+.
+
+cdl:Controller.TZonCooSetCur a s223:FunctionInput ;
+    s223:uses bldg:hvac_oveZonSupWes_TZonCooSet ;
+.
+
+cdl:Controller.TZonTemp a s223:FunctionInput ;
+    s223:uses bldg:hvac_reaZonWes_TZon ;
+.
+
+cdl:Controller.TZonHeaSetCom a s223:FunctionOutput ;
+    s223:uses bldg:hvac_oveZonSupWes_TZonHeaSet  ;
+.
+cdl:Controller.TZonCooSetCom a s223:FunctionOutput ;
+    s223:uses bldg:hvac_oveZonSupWes_TZonCooSet  ;
+.

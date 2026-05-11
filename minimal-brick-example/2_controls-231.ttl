@@ -1,0 +1,282 @@
+@prefix S231P: <https://data.ashrae.org/S231P#> .
+@prefix cdl: <http://example.org#cdl_models.Controls.> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind#> .
+@prefix qudt: <http://qudt.org/schema/qudt#> .
+@prefix unit: <http://qudt.org/vocab/unit#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+cdl:Controller a S231P:Block ;
+    S231P:containsBlock cdl:Controller.loaShe,
+        cdl:Controller.single_zone_ratchet_base ;
+    S231P:hasInput cdl:Controller.TZon,
+        cdl:Controller.TZonCooSetCur,
+        cdl:Controller.TZonHeaSetCur ;
+    S231P:hasOutput cdl:Controller.TZonCooSetCom,
+        cdl:Controller.TZonHeaSetCom ;
+    S231P:hasParameter cdl:Controller.loadShedHourEnd,
+        cdl:Controller.loadShedHourStart,
+        cdl:Controller.occStaHourEnd,
+        cdl:Controller.occStaHourStart,
+        cdl:Controller.reboundDuration,
+        cdl:Controller.samplePeriodRatchet,
+        cdl:Controller.samplePeriodRebound ;
+    S231P:label "Controller" .
+
+cdl:Controller.TRat a S231P:Parameter ;
+    S231P:accessSpecifier "public" ;
+    S231P:description "Ratcheting temperature (defined as >0)" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "TRat" ;
+    S231P:value 0.5556 .
+
+cdl:Controller.TRatThreshold a S231P:Parameter ;
+    S231P:accessSpecifier "public" ;
+    S231P:description "Threshold of zone air temperature setpoint difference below which ratcheting is triggerd" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "TRatThreshold" ;
+    S231P:value 1.1111 .
+
+cdl:Controller.TReb a S231P:Parameter ;
+    S231P:accessSpecifier "public" ;
+    S231P:description "rebound temperature (defined as >0)" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "TReb" ;
+    S231P:value 0.5556 .
+
+cdl:Controller.TZon a S231P:RealInput ;
+    qudt:hasQuantityKind quantitykind:ThermodynamicTemperature ;
+    qudt:hasUnit unit:K ;
+    S231P:accessSpecifier "public" ;
+    S231P:description "Current zone room air temperature" ;
+    S231P:graphics "Placement(transformation(extent={{-320,102},{-280,142}})),iconTransformation(extent={{-322,42},{-282,82}})))" ;
+    S231P:hasDisplayUnit unit:DEG_C ;
+    S231P:isConnectedTo cdl:Controller.single_zone_ratchet_base.TZon ;
+    S231P:label "TZon" .
+
+cdl:Controller.TZonCooSetCur a S231P:RealInput ;
+    qudt:hasQuantityKind quantitykind:ThermodynamicTemperature ;
+    qudt:hasUnit unit:K ;
+    S231P:accessSpecifier "public" ;
+    S231P:description "Current zone temperature setpoint" ;
+    S231P:graphics "Placement(transformation(extent={{-318,-152},{-278,-112}})),iconTransformation(extent={{-322,-24},{-282,16}})))" ;
+    S231P:hasDisplayUnit unit:DEG_C ;
+    S231P:isConnectedTo cdl:Controller.single_zone_ratchet_base.TZonCooSetCur ;
+    S231P:label "TZonCooSetCur" .
+
+cdl:Controller.TZonCooSetNomOcc a S231P:Parameter ;
+    qudt:hasUnit unit:K ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "TZonCooSetNomOcc" ;
+    S231P:value "273.15 +25.5556" .
+
+cdl:Controller.TZonCooSetNomUnocc a S231P:Parameter ;
+    qudt:hasUnit unit:K ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "TZonCooSetNomUnocc" ;
+    S231P:value "273.15 +32.2222" .
+
+cdl:Controller.TZonHeaSetCur a S231P:RealInput ;
+    qudt:hasQuantityKind quantitykind:ThermodynamicTemperature ;
+    qudt:hasUnit unit:K ;
+    S231P:accessSpecifier "public" ;
+    S231P:description "Current zone temperature setpoint" ;
+    S231P:graphics "Placement(transformation(extent={{-318,-20},{-278,20}})),iconTransformation(extent={{-322,10},{-282,50}})))" ;
+    S231P:hasDisplayUnit unit:DEG_C ;
+    S231P:isConnectedTo cdl:Controller.single_zone_ratchet_base.TZonHeaSetCur ;
+    S231P:label "TZonHeaSetCur" .
+
+cdl:Controller.TZonHeaSetNomOcc a S231P:Parameter ;
+    qudt:hasUnit unit:K ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "TZonHeaSetNomOcc" ;
+    S231P:value "273.15 +22.2222" .
+
+cdl:Controller.TZonHeaSetNomUnocc a S231P:Parameter ;
+    qudt:hasUnit unit:K ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "TZonHeaSetNomUnocc" ;
+    S231P:value "273.15 +15.5556" .
+
+cdl:Controller.loaShe a <http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable> ;
+    S231P:accessSpecifier "public" ;
+    S231P:graphics "Placement(transformation(extent={{-184,182},{-164,202}})))" ;
+    S231P:hasInstance cdl:Controller.loaShe.period,
+        cdl:Controller.loaShe.table,
+        cdl:Controller.loaShe.timeScale,
+        cdl:Controller.loaShe.y%5B1%5D ;
+    S231P:label "loaShe" .
+
+cdl:Controller.loaShe.period S231P:value 86400 .
+
+cdl:Controller.loaShe.table S231P:value "[0,0;loadShedHourStart,1;loadShedHourEnd,0;24,0]" .
+
+cdl:Controller.loaShe.timeScale S231P:value 3600 .
+
+cdl:Controller.loaShe.y%5B1%5D S231P:isConnectedTo cdl:Controller.single_zone_ratchet_base.loaShe .
+
+cdl:Controller.loaSheCooAct a S231P:Parameter ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Boolean ;
+    S231P:label "loaSheCooAct" ;
+    S231P:value true .
+
+cdl:Controller.loaSheHeaAct a S231P:Parameter ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Boolean ;
+    S231P:label "loaSheHeaAct" ;
+    S231P:value true .
+
+cdl:Controller.loadShedDurationTypical a S231P:Parameter ;
+    qudt:hasUnit unit:SEC ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "loadShedDurationTypical" ;
+    S231P:value "(loadShedHourEnd -loadShedHourStart)*3600" .
+
+cdl:Controller.loadShedHourEnd a S231P:Parameter ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "loadShedHourEnd" ;
+    S231P:value 5 .
+
+cdl:Controller.loadShedHourStart a S231P:Parameter ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "loadShedHourStart" ;
+    S231P:value 0 .
+
+cdl:Controller.loadShedTempAmount a S231P:Parameter ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "loadShedTempAmount" ;
+    S231P:value 5 .
+
+cdl:Controller.occSta a <http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable> ;
+    S231P:accessSpecifier "public" ;
+    S231P:graphics "Placement(transformation(extent={{-174,142},{-154,162}})))" ;
+    S231P:hasInstance cdl:Controller.occSta.period,
+        cdl:Controller.occSta.table,
+        cdl:Controller.occSta.timeScale,
+        cdl:Controller.occSta.y%5B1%5D ;
+    S231P:label "occSta" .
+
+cdl:Controller.occSta.period S231P:value 86400 .
+
+cdl:Controller.occSta.table S231P:value "[0,1;occStaHourEnd,0;occStaHourStart,1;24,1]" .
+
+cdl:Controller.occSta.timeScale S231P:value 3600 .
+
+cdl:Controller.occSta.y%5B1%5D S231P:isConnectedTo cdl:Controller.single_zone_ratchet_base.occSta .
+
+cdl:Controller.occStaHourEnd a S231P:Parameter ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "occStaHourEnd" ;
+    S231P:value 4 .
+
+cdl:Controller.occStaHourStart a S231P:Parameter ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "occStaHourStart" ;
+    S231P:value 15 .
+
+cdl:Controller.reboundDuration a S231P:Parameter ;
+    qudt:hasUnit unit:SEC ;
+    S231P:accessSpecifier "public" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "reboundDuration" ;
+    S231P:value 3600 .
+
+cdl:Controller.samplePeriodRatchet a S231P:Parameter ;
+    qudt:hasUnit unit:SEC ;
+    S231P:accessSpecifier "public" ;
+    S231P:description "Sample period of the demand flexibility control" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "samplePeriodRatchet" ;
+    S231P:value "loadShedDurationTypical*0.3333*TRat/loadShedTempAmount" .
+
+cdl:Controller.samplePeriodRebound a S231P:Parameter ;
+    qudt:hasUnit unit:SEC ;
+    S231P:accessSpecifier "public" ;
+    S231P:description "Sample period of rebound" ;
+    S231P:isOfDataType S231P:Real ;
+    S231P:label "samplePeriodRebound" ;
+    S231P:value "reboundDuration*TReb/loadShedTempAmount" .
+
+cdl:Controller.single_zone_ratchet_base a cdl:Subsequences.single_zone_ratchet_base ;
+    S231P:accessSpecifier "public" ;
+    S231P:graphics "Placement(transformation(extent={{-88,-52},{118,96}})))" ;
+    S231P:hasInstance cdl:Controller.single_zone_ratchet_base.TRat,
+        cdl:Controller.single_zone_ratchet_base.TRatThreshold,
+        cdl:Controller.single_zone_ratchet_base.TReb,
+        cdl:Controller.single_zone_ratchet_base.TZon,
+        cdl:Controller.single_zone_ratchet_base.TZonCooSetCom,
+        cdl:Controller.single_zone_ratchet_base.TZonCooSetCur,
+        cdl:Controller.single_zone_ratchet_base.TZonCooSetNomOcc,
+        cdl:Controller.single_zone_ratchet_base.TZonCooSetNomUnocc,
+        cdl:Controller.single_zone_ratchet_base.TZonHeaSetCom,
+        cdl:Controller.single_zone_ratchet_base.TZonHeaSetCur,
+        cdl:Controller.single_zone_ratchet_base.TZonHeaSetNomOcc,
+        cdl:Controller.single_zone_ratchet_base.TZonHeaSetNomUnocc,
+        cdl:Controller.single_zone_ratchet_base.loaShe,
+        cdl:Controller.single_zone_ratchet_base.loaSheCooAct,
+        cdl:Controller.single_zone_ratchet_base.loaSheHeaAct,
+        cdl:Controller.single_zone_ratchet_base.loadShedHourEnd,
+        cdl:Controller.single_zone_ratchet_base.loadShedHourStart,
+        cdl:Controller.single_zone_ratchet_base.loadShedTempAmount,
+        cdl:Controller.single_zone_ratchet_base.occSta,
+        cdl:Controller.single_zone_ratchet_base.reboundDuration ;
+    S231P:label "single_zone_ratchet_base" .
+
+cdl:Controller.single_zone_ratchet_base.TRat S231P:value "TRat" .
+
+cdl:Controller.single_zone_ratchet_base.TRatThreshold S231P:value "TRatThreshold" .
+
+cdl:Controller.single_zone_ratchet_base.TReb S231P:value "TReb" .
+
+cdl:Controller.single_zone_ratchet_base.TZonCooSetCom S231P:isConnectedTo cdl:Controller.TZonCooSetCom .
+
+cdl:Controller.single_zone_ratchet_base.TZonCooSetNomOcc S231P:value "TZonCooSetNomOcc" .
+
+cdl:Controller.single_zone_ratchet_base.TZonCooSetNomUnocc S231P:value "TZonCooSetNomUnocc" .
+
+cdl:Controller.single_zone_ratchet_base.TZonHeaSetCom S231P:isConnectedTo cdl:Controller.TZonHeaSetCom .
+
+cdl:Controller.single_zone_ratchet_base.TZonHeaSetNomOcc S231P:value "TZonHeaSetNomOcc" .
+
+cdl:Controller.single_zone_ratchet_base.TZonHeaSetNomUnocc S231P:value "TZonHeaSetNomUnocc" .
+
+cdl:Controller.single_zone_ratchet_base.loaSheCooAct S231P:value "loaSheCooAct" .
+
+cdl:Controller.single_zone_ratchet_base.loaSheHeaAct S231P:value "loaSheHeaAct" .
+
+cdl:Controller.single_zone_ratchet_base.loadShedHourEnd S231P:value "loadShedHourEnd" .
+
+cdl:Controller.single_zone_ratchet_base.loadShedHourStart S231P:value "loadShedHourStart" .
+
+cdl:Controller.single_zone_ratchet_base.loadShedTempAmount S231P:value "loadShedTempAmount" .
+
+cdl:Controller.single_zone_ratchet_base.reboundDuration S231P:value "reboundDuration" .
+
+cdl:Controller.TZonCooSetCom a S231P:RealOutput ;
+    qudt:hasQuantityKind quantitykind:ThermodynamicTemperature ;
+    qudt:hasUnit unit:K ;
+    S231P:accessSpecifier "public" ;
+    S231P:description "Zone temperature setpoint command" ;
+    S231P:graphics "Placement(transformation(extent={{282,-144},{322,-104}})),iconTransformation(extent={{280,-150},{320,-110}})))" ;
+    S231P:hasDisplayUnit unit:DEG_C ;
+    S231P:label "TZonCooSetCom" .
+
+cdl:Controller.TZonHeaSetCom a S231P:RealOutput ;
+    qudt:hasQuantityKind quantitykind:ThermodynamicTemperature ;
+    qudt:hasUnit unit:K ;
+    S231P:accessSpecifier "public" ;
+    S231P:description "Zone temperature setpoint command" ;
+    S231P:graphics "Placement(transformation(extent={{282,98},{322,138}})),iconTransformation(extent={{280,18},{320,58}})))" ;
+    S231P:hasDisplayUnit unit:DEG_C ;
+    S231P:label "TZonHeaSetCom" .
+

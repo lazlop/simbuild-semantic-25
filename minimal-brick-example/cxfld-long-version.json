@@ -1,0 +1,626 @@
+{
+  "@context": {
+    "S231P": "https://data.ashrae.org/S231P#",
+    "qudt": "http://qudt.org/schema/qudt#",
+    "unit": "http://qudt.org/vocab/unit#",
+    "q": "http://qudt.org/vocab/quantitykind#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller",
+      "@type": "S231P:Block",
+      "S231P:containsBlock": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loaShe"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occSta"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base"
+        }
+      ],
+      "S231P:diagram": "coordinateSystem(extent={{-280,-220},{280,220}},preserveAspectRatio=false)",
+      "S231P:hasInput": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZon"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetCur"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetCur"
+        }
+      ],
+      "S231P:hasOutput": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetCom"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetCom"
+        }
+      ],
+      "S231P:hasParameter": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loadShedDurationTypical"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loadShedHourEnd"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loadShedHourStart"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loadShedTempAmount"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loaSheCooAct"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loaSheHeaAct"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occStaHourEnd"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occStaHourStart"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.reboundDuration"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.samplePeriodRatchet"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.samplePeriodRebound"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TRat"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TRatThreshold"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TReb"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNomOcc"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNomUnocc"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNomOcc"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNomUnocc"
+        }
+      ],
+      "S231P:icon": "coordinateSystem(extent={{-280,-220},{280,220}},preserveAspectRatio=false)",
+      "S231P:label": "Controller"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loadShedDurationTypical",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "loadShedDurationTypical",
+      "S231P:value": "(loadShedHourEnd -loadShedHourStart)*3600"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loadShedHourEnd",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "loadShedHourEnd",
+      "S231P:value": 5
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loadShedHourStart",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "loadShedHourStart",
+      "S231P:value": 0
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loadShedTempAmount",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "loadShedTempAmount",
+      "S231P:value": 5
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loaShe",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-184,182},{-164,202}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loaShe.period"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loaShe.table"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loaShe.timeScale"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.loaShe.y%5B1%5D"
+        }
+      ],
+      "S231P:label": "loaShe"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loaShe.period",
+      "S231P:value": 86400
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loaShe.table",
+      "S231P:value": "[0,0;loadShedHourStart,1;loadShedHourEnd,0;24,0]"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loaShe.timeScale",
+      "S231P:value": 3600
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loaShe.y%5B1%5D",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loaShe"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loaSheCooAct",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "loaSheCooAct",
+      "S231P:value": true
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.loaSheHeaAct",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Boolean"
+      },
+      "S231P:label": "loaSheHeaAct",
+      "S231P:value": true
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occSta",
+      "@type": "http://example.org#Buildings.Controls.OBC.CDL.Logical.Sources.TimeTable",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-174,142},{-154,162}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occSta.period"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occSta.table"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occSta.timeScale"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.occSta.y%5B1%5D"
+        }
+      ],
+      "S231P:label": "occSta"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occSta.period",
+      "S231P:value": 86400
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occSta.table",
+      "S231P:value": "[0,1;occStaHourEnd,0;occStaHourStart,1;24,1]"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occSta.timeScale",
+      "S231P:value": 3600
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occSta.y%5B1%5D",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.occSta"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occStaHourEnd",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "occStaHourEnd",
+      "S231P:value": 4
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.occStaHourStart",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "occStaHourStart",
+      "S231P:value": 15
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.reboundDuration",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "reboundDuration",
+      "S231P:value": 3600
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.samplePeriodRatchet",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Sample period of the demand flexibility control",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "samplePeriodRatchet",
+      "S231P:value": "loadShedDurationTypical*0.3333*TRat/loadShedTempAmount"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.samplePeriodRebound",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:SEC"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Sample period of rebound",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "samplePeriodRebound",
+      "S231P:value": "reboundDuration*TReb/loadShedTempAmount"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base",
+      "@type": "http://example.org#cdl_models.Controls.Subsequences.single_zone_ratchet_base",
+      "S231P:accessSpecifier": "public",
+      "S231P:graphics": "Placement(transformation(extent={{-88,-52},{118,96}})))",
+      "S231P:hasInstance": [
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loadShedHourEnd"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loadShedHourStart"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loadShedTempAmount"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loaShe"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loaSheCooAct"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loaSheHeaAct"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.occSta"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.reboundDuration"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TRat"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TRatThreshold"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TReb"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZon"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonCooSetCom"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonCooSetCur"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonCooSetNomOcc"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonCooSetNomUnocc"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonHeaSetCom"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonHeaSetCur"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonHeaSetNomOcc"
+        },
+        {
+          "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonHeaSetNomUnocc"
+        }
+      ],
+      "S231P:label": "single_zone_ratchet_base"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loadShedHourEnd",
+      "S231P:value": "loadShedHourEnd"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loadShedHourStart",
+      "S231P:value": "loadShedHourStart"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loadShedTempAmount",
+      "S231P:value": "loadShedTempAmount"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loaSheCooAct",
+      "S231P:value": "loaSheCooAct"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.loaSheHeaAct",
+      "S231P:value": "loaSheHeaAct"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.reboundDuration",
+      "S231P:value": "reboundDuration"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TRat",
+      "S231P:value": "TRat"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TRatThreshold",
+      "S231P:value": "TRatThreshold"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TReb",
+      "S231P:value": "TReb"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonCooSetCom",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetCom"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonCooSetNomOcc",
+      "S231P:value": "TZonCooSetNomOcc"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonCooSetNomUnocc",
+      "S231P:value": "TZonCooSetNomUnocc"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonHeaSetCom",
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetCom"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonHeaSetNomOcc",
+      "S231P:value": "TZonHeaSetNomOcc"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonHeaSetNomUnocc",
+      "S231P:value": "TZonHeaSetNomUnocc"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TRat",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Ratcheting temperature (defined as >0)",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TRat",
+      "S231P:value": {
+        "@value": "0.5556",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TRatThreshold",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Threshold of zone air temperature setpoint difference below which ratcheting is triggerd",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TRatThreshold",
+      "S231P:value": {
+        "@value": "1.1111",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TReb",
+      "@type": "S231P:Parameter",
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "rebound temperature (defined as >0)",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TReb",
+      "S231P:value": {
+        "@value": "0.5556",
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZon",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Current zone room air temperature",
+      "S231P:graphics": "Placement(transformation(extent={{-320,102},{-280,142}})),iconTransformation(extent={{-322,42},{-282,82}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZon"
+      },
+      "S231P:label": "TZon"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetCom",
+      "@type": "S231P:RealOutput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Zone temperature setpoint command",
+      "S231P:graphics": "Placement(transformation(extent={{282,-144},{322,-104}})),iconTransformation(extent={{280,-150},{320,-110}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:label": "TZonCooSetCom"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetCur",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Current zone temperature setpoint",
+      "S231P:graphics": "Placement(transformation(extent={{-318,-152},{-278,-112}})),iconTransformation(extent={{-322,-24},{-282,16}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonCooSetCur"
+      },
+      "S231P:label": "TZonCooSetCur"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNomOcc",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TZonCooSetNomOcc",
+      "S231P:value": "273.15 +25.5556"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonCooSetNomUnocc",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TZonCooSetNomUnocc",
+      "S231P:value": "273.15 +32.2222"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetCom",
+      "@type": "S231P:RealOutput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Zone temperature setpoint command",
+      "S231P:graphics": "Placement(transformation(extent={{282,98},{322,138}})),iconTransformation(extent={{280,18},{320,58}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:label": "TZonHeaSetCom"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetCur",
+      "@type": "S231P:RealInput",
+      "qudt:hasQuantityKind": {
+        "@id": "q:ThermodynamicTemperature"
+      },
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:description": "Current zone temperature setpoint",
+      "S231P:graphics": "Placement(transformation(extent={{-318,-20},{-278,20}})),iconTransformation(extent={{-322,10},{-282,50}})))",
+      "S231P:hasDisplayUnit": {
+        "@id": "unit:DEG_C"
+      },
+      "S231P:isConnectedTo": {
+        "@id": "http://example.org#cdl_models.Controls.Controller.single_zone_ratchet_base.TZonHeaSetCur"
+      },
+      "S231P:label": "TZonHeaSetCur"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNomOcc",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TZonHeaSetNomOcc",
+      "S231P:value": "273.15 +22.2222"
+    },
+    {
+      "@id": "http://example.org#cdl_models.Controls.Controller.TZonHeaSetNomUnocc",
+      "@type": "S231P:Parameter",
+      "qudt:hasUnit": {
+        "@id": "unit:K"
+      },
+      "S231P:accessSpecifier": "public",
+      "S231P:isOfDataType": {
+        "@id": "S231P:Real"
+      },
+      "S231P:label": "TZonHeaSetNomUnocc",
+      "S231P:value": "273.15 +15.5556"
+    }
+  ]
+}
