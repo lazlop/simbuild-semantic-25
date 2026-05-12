@@ -2,13 +2,13 @@
 
 These files are a minimal example of a 231 controller on a brick ontology building with 223 function blocks, based on the simbuild 25 paper example. There are more files here than need to exist for a minimal example, since it is coming from our demo of setting up the controls in the Normal platform. 
 
-1. building.ttl: This is a brick model for a single zone of a VAV system from the BOPTest simple office air building. It is trimmed down from the 5 zone model, and some external references were removed for both BOPtest and the normal platform. We may want to add new external references for BACnet for this example. 
+For the minimal example we would have:
 
-2. controls-231.ttl: This is ttl serialized CXF export for the demand flexibility ratcheting controller. This was slightly cleaned up by editing prefixes. 
+**1. building.ttl:** This is a brick model for a single zone of a VAV system from the BOPTest simple office air building. It is trimmed down from the 5 zone model, and some external references were removed for both BOPtest and the normal platform. We may want to add new external references for BACnet for this example. 
 
-3. controls-implemented.ttl: This defines the CXF exports according to s223 function concepts, and links them to points in the building model 
+**2. controls-231.ttl:** This is ttl serialized CXF export for the demand flexibility ratcheting controller. This was slightly cleaned up by editing prefixes. 
 
-This would conclude a minimal example (though I think we should add bacnet references to 1. or I could add back the BOPTest references and we could make this minimal example, then have some more advanced example that actually sets up and runs controls against the BOPTest web service)
+**3. controls-implemented.ttl:** This defines the CXF exports according to s223 function concepts, and links them to points in the building model 
 
 The below files are specific to the workflow we did for setting up controls in the Normal platform, and are too complicated for a minimal example. We are experimenting with some approaches leveraging templates, shapes, and inference to create application specific data models. These application specific data models are similar to the object oriented approach we investigated in NAWI, and the G36 extension for S223. 
 
