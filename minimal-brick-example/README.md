@@ -1,6 +1,6 @@
 # Minimal Brick Example 
 
-These files are a minimal example of a 231 controller on a brick ontology building with 223 function blocks based on the examples for the simbuild 25 paper. There are more files here than need to exist for a minimal example, since it is coming from our demo of setting up the controls in the Normal platform. 
+These files are a minimal example of a 231 controller on a brick ontology building with 223 function blocks, based on the simbuild 25 paper example. There are more files here than need to exist for a minimal example, since it is coming from our demo of setting up the controls in the Normal platform. 
 
 1. building.ttl: This is a brick model for a single zone of a VAV system from the BOPTest simple office air building. It is trimmed down from the 5 zone model, and some external references were removed for both BOPtest and the normal platform. We may want to add new external references for BACnet for this example. 
 
