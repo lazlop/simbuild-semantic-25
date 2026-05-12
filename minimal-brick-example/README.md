@@ -17,11 +17,8 @@ The new files we created have shapes that define the controller and controls IO 
  - extra_controls-223.ttl: This defines shapes for the CXF controller. These shapes describe IO for the controller, how each IO should relate to points, the brick classes, qudt units, and ext. references of these points, and how an entity of focus (e.g. a zone) relates to these zones. This is the application specific data model. It serves the same function as a SPARQL query, but the fragments are reusable and machine readable. It was automatically generated based on BMotif templates, so it is not pretty. I cleaned up some of the external reference related shapes and 'inlined' the shapes to improve readability. By 'inlining' I mean that if there was a tree structure I got rid of subject nodes and used blank nodes instead. 
 
  - extra_controls-specified.ttl: This file links the CXF controller nodes to the 223 shapes, that define how they should be implemented. 
-
 This file also defines two new properties in a new namespace (OBC): 'obc:binds' and 'obc:controls'. These properties are used to treat the controller not as a one discrete IO controller but as a template for other controllers, or as function logic that can have different groups of inputs and outputs, which is how Normal works. 
-
 'obc:controls' relates the controller to the shape of entity it is related to (e.g. obc:zone). This entity links to all the points relevant to the IO, using paths specified in the shapes. 'obc:binds' relates controller IO to the shapes of brick point it should relate too. 
-
 The obc:binds relationship is redundant with the some information in the SHACL shapes, which already describes how the function IO should relate to the data in the building model, but I think having it explicit improves clarity. 
 
 
