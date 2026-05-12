@@ -9,10 +9,10 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 obc:controls a rdf:Property ;
-    rdfs:comment "Defines which entities are controlled by a given control function." .
-
+    rdfs:comment """Relationship between a control function and the entity that is the focus of its control. 
+                This entity relates via has-point to the data points used by the controller.""" .
 obc:binds a rdf:Property ;
-    rdfs:comment "Defines the relationship between a specified control input and specified data point." .
+    rdfs:comment """Relationship between a specified control input and data point shape.""" .
 
 cdl:Controller a obc:zone-temp-controller ;
     obc:controls obc:zone .
