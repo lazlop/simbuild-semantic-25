@@ -1,16 +1,16 @@
 # Minimal Brick Example 
 
-These files are a minimal example of a 231 controller on a brick ontology building with 223 function blocks, based on the simbuild 25 paper example. There are more files here than need to exist for a minimal example, since it is coming from our demo of setting up the controls in the Normal platform. 
-
-For the minimal example we would have:
+These files are a minimal example of a 231 controller on a brick ontology building with 223 function blocks, based on the simbuild 25 paper example with some trimming and cleanup. 
 
 **1. building.ttl:** This is a brick model for a single zone of a VAV system from the BOPTest simple office air building. It is trimmed down from the 5 zone model, and some external references were removed for both BOPtest and the normal platform. We may want to add new external references for BACnet for this example. 
 
-**2. controls-231.ttl:** This is ttl serialized CXF export for the demand flexibility ratcheting controller. This was slightly cleaned up by editing prefixes. 
+**2. controls-231.ttl:** This is a ttl serialized CXF export for the demand flexibility ratcheting controller. This was slightly cleaned up by editing prefixes. I have left in all the parameters, schedules, etc. which we may choose to remove for the purpose of this example. 
 
 **3. controls-implemented.ttl:** This defines the CXF exports according to s223 function concepts, and links them to points in the building model 
 
-The below files are specific to the workflow we did for setting up controls in the Normal platform, and are too complicated for a minimal example. We are experimenting with some approaches leveraging templates, shapes, and inference to create application specific data models. These application specific data models are similar to the object oriented approach we investigated in NAWI, and the G36 extension for S223. 
+To clarify the differences between our approach in the paper and the minimal example, some additional files are included in this directory. If we want to set up a more advanced example configuring controls using 231/brick, we may build off of these. 
+
+The below files are specific to the workflow we did for setting up controls in the Normal platform. We are experimenting with some approaches leveraging templates, shapes, and inference to create application specific data models. These application specific data models are similar to the object oriented approach we investigated in NAWI, and the G36 extension for S223. 
 
 The new files we created have shapes that define the controller and controls IO according to s223 concepts and brick classes. The files also includes some simple properties to specify how an implemented controller should relate to these shapes. These were used to create controller configurations for the Normal platform. Because the controllers were created in Normal, we are missing individual functions/function blocks that represent the fully configured controlers for each zone. 
 
